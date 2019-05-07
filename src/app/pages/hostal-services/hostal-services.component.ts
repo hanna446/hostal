@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HostalServicesComponent implements OnInit {
 
-  constructor() { }
+  public pathImage: string;
+
+  constructor() {
+    this.pathImage = 'assets/images/bg_3.jpg';
+   }
 
   ngOnInit() {
   }
