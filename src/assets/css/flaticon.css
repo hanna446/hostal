@@ -1,7 +1,8 @@
-/*
-    Flaticon icon font: Flaticon
-    Creation date: 05/07/2018 04:38
-    */
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 04/01/2019 13:45
+  	*/
+
 
 @font-face {
   font-family: "Flaticon";
@@ -35,10 +36,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.flaticon-car:before { content: "\f100"; }
-.flaticon-resort:before { content: "\f101"; }
-.flaticon-yatch:before { content: "\f102"; }
-.flaticon-map-of-roads:before { content: "\f103"; }
-.flaticon-compass:before { content: "\f104"; }
-.flaticon-around:before { content: "\f105"; }
-.flaticon-sailboat:before { content: "\f106"; }
+.flaticon-world:before { content: "\f100"; }
+.flaticon-map-of-roads:before { content: "\f101"; }
+.flaticon-gliding:before { content: "\f102"; }
+.flaticon-tour-guide:before { content: "\f103"; }
+.flaticon-alarm-clock:before { content: "\f104"; }
+.flaticon-manager:before { content: "\f105"; }
+.flaticon-calendar:before { content: "\f106"; }
+.flaticon-layers:before { content: "\f107"; }
+.flaticon-wallet:before { content: "\f108"; }

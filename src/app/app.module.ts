@@ -5,14 +5,14 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HostalServicesComponent } from './pages/hostal-services/hostal-services.component';
+import { SectionsComponent } from './shared/sections/sections.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     NavComponent,
-    HostalServicesComponent
+    SectionsComponent,
   ],
   imports: [
     BrowserModule,
