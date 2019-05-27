@@ -16,11 +16,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.onCarousel();
-    this.ViewPopup();
+    this.ViewPopup();        
   }
 
   // JQUERY carousel
   onCarousel() {
+
     $('.home-slider').owlCarousel({
       loop: true,
       autoplay: true,
