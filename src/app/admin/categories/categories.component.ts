@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { CategoriesService } from "../../services/categories.service";
+import { CategoryModels } from "../../models/category.models";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-categories",
@@ -6,13 +9,19 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./categories.component.css"]
 })
 export class CategoriesComponent implements OnInit {
-  constructor() {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-   this.table();
-    
+    this.table();
+  }
+
+  saveCategory(f: NgForm) {
+    console.log(f.value.name);
+
+    this.categoriesService.createCategories(f.value.name)
+    .subscribe(() => {});
   }
 
   table() {
