@@ -6,7 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "./shared/shared.module";
 import { AdminModule } from "./admin/admin.module";
 import { PageModule } from "./pages/pages.module";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./auth/login/login.component";
 import { ServicesModule } from './services/services.modules';
 
 
@@ -16,11 +16,15 @@ import { environment } from '../environments/environment';
 // Firebase
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabase,AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
+import { FormsModule } from "@angular/forms";
+import { RegisterComponent } from './auth/register/register.component';
+import { KeyPipe } from './pipes/key.pipe';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,9 +35,11 @@ import { AngularFireModule } from '@angular/fire';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

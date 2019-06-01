@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from "@angular/forms";
+import { KeyPipe } from '../pipes/key.pipe';
+
 
 
 @NgModule({
-  declarations:[CategoriesComponent,OurServicesComponent,RoomsComponent],
+  declarations:[CategoriesComponent,OurServicesComponent,RoomsComponent,KeyPipe],
   exports:[],
-  imports:[CommonModule,AppRoutingModule,SharedModule,FormsModule]
-})
+  imports:[CommonModule,AppRoutingModule,SharedModule,FormsModule]})
 
 export class AdminModule{}

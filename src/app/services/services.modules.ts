@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from './categories.service';
 import { HttpClientModule } from "@angular/common/http";
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,6 @@ import { HttpClientModule } from "@angular/common/http";
   imports: [CommonModule, HttpClientModule
   ],
 
-  providers:[CategoriesService]
+  providers:[CategoriesService,AuthService]
 })
 export class ServicesModule {}

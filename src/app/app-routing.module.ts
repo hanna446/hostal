@@ -11,7 +11,9 @@ import { AboutComponent } from "./pages/about/about.component";
 import { CategoriesComponent } from "./admin/categories/categories.component";
 import { OurServicesComponent } from "./admin/our-services/our-services.component";
 import { RoomsComponent } from "./admin/rooms/rooms.component";
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from "./auth/login/login.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -22,10 +24,11 @@ const routes: Routes = [
   { path: "destination-single", component: DestinationSingleComponent },
   { path: "hotel-single", component: HotelSingleComponent },
   { path: "hotel", component: HotelComponent },
-  { path: "login", component: LoginComponent},
-  { path: "admin/categories", component: CategoriesComponent },
-  { path: "admin/our-services", component: OurServicesComponent },
-  { path: "admin/rooms", component: RoomsComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
+  { path: "admin/categories", component: CategoriesComponent,canActivate: [AuthGuard]},
+  { path: "admin/our-services", component: OurServicesComponent,canActivate:[AuthGuard]},
+  { path: "admin/rooms", component: RoomsComponent,canActivate: [AuthGuard] },
   { path: "**", pathMatch: "full", redirectTo: "home" }
 ];
 

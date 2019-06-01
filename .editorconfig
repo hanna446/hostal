@@ -4,10 +4,14 @@ root = true
 [*]
 charset = utf-8
 indent_style = space
+end_of_line = if
 indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
+editor.wordWrap: on
 
-[*.md]
-max_line_length = off
+[*.html]
+indent_style = space
+indent_size = 2
+max_line_length = on
 trim_trailing_whitespace = false
