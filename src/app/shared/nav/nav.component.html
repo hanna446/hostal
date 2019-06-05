@@ -44,18 +44,18 @@
         <li class="nav-item">
           <a href="#contact-section" class="nav-link"><span>Contact</span></a>
         </li>
-        <li class="nav-item">
-          <a routerLink="/login" class="nav-link"><span>Sing in</span></a>
-        </li>
+                
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" routerLink="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span>Admin</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/admin/categories">Categories</a>
-            <a class="dropdown-item" routerLink="/admin/rooms">Rooms</a>
-            <a class="dropdown-item" routerLink="/admin/our-services">Services</a>
-          </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button routerLink="/admin/categories" class="dropdown-item" type="button">Categories</button>
+                  <button routerLink="/admin/rooms" class="dropdown-item" type="button">Rooms</button>
+                  <button routerLink="/admin/our-services" class="dropdown-item" type="button">Services</button>
+                </div>
+              </div>
         </li>
       </ul>
     </div>

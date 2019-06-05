@@ -13174,7 +13174,7 @@ textarea.form-control {
 .ftco-footer {
   font-size: 16px;
   background: #1b1919;
-  padding: 7em 0;
+  padding: 7px 0;
   z-index: 0;
   position: relative;
 }
@@ -13187,7 +13187,7 @@ textarea.form-control {
 .ftco-footer .ftco-footer-widget h2 {
   font-weight: normal;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-size: 22px;
   font-weight: 600;
 }
@@ -13209,17 +13209,19 @@ textarea.form-control {
 }
 
 .ftco-footer .ftco-footer-widget .btn-primary {
-  background: #fff !important;
-  border: 2px solid #fff !important;
+  background: #E2C0BB ;
+  border: 1px solid #e2c0bb ;
 }
 
 .ftco-footer .ftco-footer-widget .btn-primary:hover {
   background: #fff;
-  border: 2px solid #fff !important;
+  border: 2px solid #fff ;
+  color: #E2C0BB !important;
 }
 
 .ftco-footer p {
   color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
 }
 
 .ftco-footer a {
