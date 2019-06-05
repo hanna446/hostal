@@ -9,6 +9,7 @@ import swal from "sweetalert2";
   templateUrl: "./categories.component.html",
   styleUrls: ["./categories.component.css"]
 })
+
 export class CategoriesComponent implements OnInit {
   categoriesArray: CategoryModels[] = [];
 
@@ -20,7 +21,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getCategories();
@@ -32,8 +33,8 @@ export class CategoriesComponent implements OnInit {
 
   async onSubmit(f: NgForm) {
     await swal.fire({
-      title: "Create your category",
-      input: "text",
+      title: 'Create your category',
+      input: 'text',
       showCancelButton: true,
       inputValidator: value => {
         this.cat.name = value;
@@ -41,10 +42,10 @@ export class CategoriesComponent implements OnInit {
           return "You need to write something!";
         }
         this.categoriesService.createCategories(this.cat).subscribe(resp => {
-          swal.fire("Exito", null, "success");
+          swal.fire('Exito', null, 'success');
           this.getCategories();
           err => {
-            swal.fire("Ops error", null, "error");
+            swal.fire('Ops error', null, 'error');
           };
         });
       }
@@ -98,14 +99,14 @@ export class CategoriesComponent implements OnInit {
   }
 
   table() {
-    $(document).ready(function() {
-      $("#mytable #checkall").click(function() {
+    $(document).ready(function () {
+      $("#mytable #checkall").click(function () {
         if ($("#mytable #checkall").is(":checked")) {
-          $("#mytable input[type=checkbox]").each(function() {
+          $("#mytable input[type=checkbox]").each(function () {
             $(this).prop("checked", true);
           });
         } else {
-          $("#mytable input[type=checkbox]").each(function() {
+          $("#mytable input[type=checkbox]").each(function () {
             $(this).prop("checked", false);
           });
         }

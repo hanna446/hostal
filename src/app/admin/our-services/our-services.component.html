@@ -1,2 +1,170 @@
 <app-nav></app-nav>
 
+<div class="page-content">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidebar content-box" style="display: block;">
+        <ul class="nav">
+          <!-- Main menu -->
+          <li>
+            <a routerLink="/admin/rooms"><i class="glyphicon glyphicon-home"></i>Rooms</a>
+          </li>
+          <li>
+            <a routerLink="/admin/categories"><i class="glyphicon glyphicon-home"></i>Categories</a>
+          </li>
+
+          <li class="submenu">
+            <a routerLink="/">
+              <i class="glyphicon glyphicon-list"></i> Services
+              <span class="caret pull-right"></span>
+            </a>
+            <!-- Sub menu -->
+            <ul>
+              <li><a href="login.html">Restaurant</a></li>
+              <li><a href="signup.html">Salons</a></li>
+              <li><a routerLink="admin/our-services">Others</a></li>
+            </ul>
+            <!-- Sub menu end-->
+          </li>
+          <li>
+            <a (click)="logout()"><i class="glyphicon glyphicon-home"></i>Exit</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- / Main menu-->
+
+    <div class="col-md-10">
+      <div class="row">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content-box-large">
+              <div class="panel-heading">
+                <div class="panel-title">Services Management</div>
+
+                <div class="panel-options">
+                  <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                  <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div id="rootwizard">
+                  <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                        role="tab" aria-controls="nav-home" aria-selected="true">Info</a>
+                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                        aria-controls="nav-profile" aria-selected="false">Pictures</a>
+
+                      <!-- button add -->
+                      <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#exampleModal" data-whatever="@mdo">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </div>
+                  </nav>
+
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <!-- Table -->
+                            <div class="table-responsive">
+                              <table id="mytable" class="table table-bordered table-striped table-responsive">
+                                <thead>
+                                  <th>Service name</th>
+                                  <th>Description</th>
+                                  <th>Hours</th>
+                                  <th>Price</th>
+                                  <th>Edit</th>
+                                  <th>Delete</th>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="
+                                  let serv of servicesArray | keys;
+                                  let i = index">
+                                    <td>{{servicesArray[serv].name}}</td>
+                                    <td>{{servicesArray[serv].description}}</td>
+                                    <td>{{servicesArray[serv].hours}}</td>
+                                    <td>{{servicesArray[serv].price}}</td>
+
+                                    <td>
+                                      <p data-placement="top" data-toggle="modal" title="Edit">
+                                        <button (click)="update(serv)" class="btn btn-warning btn-xs">
+                                          <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                      </p>
+                                    </td>
+
+                                    <td>
+                                      <p data-placement="top" data-toggle="modal" title="Delete">
+                                        <button (click)="delete(serv)" class="btn btn-danger btn-xs">
+                                          <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                      </p>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <!-- Table end-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        ...
+                      </div>
+                      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        ...
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  Page content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create a new service</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Name:</label>
+              <input [(ngModel)]="serv.name" type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Description:</label>
+              <input [(ngModel)]="serv.description" class="form-control" name="description">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Hours:</label>
+              <input [(ngModel)]="serv.hours" class="form-control" name="hours">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Price:</label>
+              <input [(ngModel)]="serv.price" class="form-control" name="price">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit"  class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -11,6 +11,7 @@ const headers = new HttpHeaders({
 @Injectable({
   providedIn: "root"
 })
+
 export class CategoriesService {
   constructor(private http: HttpClient) {}
 
