@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CategoriesService } from "../../services/categories.service";
 import { CategoryModels } from "../../models/category.models";
-import { NgForm } from "@angular/forms";
+import { NgForm, FormGroup,FormControl, Validators } from '@angular/forms';
 import { AuthService } from "../../services/auth.service";
 import swal from "sweetalert2";
 @Component({
@@ -11,6 +11,7 @@ import swal from "sweetalert2";
 })
 
 export class CategoriesComponent implements OnInit {
+  validate:FormGroup;
   categoriesArray: CategoryModels[] = [];
 
   public cat: CategoryModels = {
@@ -21,7 +22,13 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private authService: AuthService
-  ) { }
+  ) {
+
+    this.validate = new FormGroup({
+      'name': new FormControl(''),
+      'description': new FormControl('')
+    });
+   }
 
   ngOnInit() {
     this.getCategories();
@@ -97,6 +104,8 @@ export class CategoriesComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+
 
   table() {
     $(document).ready(function () {

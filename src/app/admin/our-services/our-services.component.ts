@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { OurServicesService } from "../../services/our-services.service";
 import { AuthService } from "../../services/auth.service";
-import { NgForm } from "@angular/forms";
+import { NgForm,FormGroup,FormControl, Validators } from "@angular/forms";
 import swal from "sweetalert2";
 import { ServicesModel } from "../../models/our-services.models";
 
@@ -11,6 +11,8 @@ import { ServicesModel } from "../../models/our-services.models";
   styleUrls: ["./our-services.component.css"]
 })
 export class OurServicesComponent implements OnInit {
+validate:FormGroup;
+
   public servicesArray: ServicesModel[] = [];
 
   public serv: ServicesModel = {
@@ -23,7 +25,15 @@ export class OurServicesComponent implements OnInit {
   constructor(
     private OurServicesService: OurServicesService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.validate = new FormGroup({
+      'name': new FormControl(''),
+      'description': new FormControl(''),
+      'hours': new FormControl(''),
+      'price': new FormControl('')
+    });
+    
+  }
 
   ngOnInit() {
     this.getService();

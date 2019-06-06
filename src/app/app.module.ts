@@ -19,7 +19,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabase,AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from './auth/register/register.component';
 import { KeyPipe } from './pipes/key.pipe';
 
@@ -37,7 +37,8 @@ import { KeyPipe } from './pipes/key.pipe';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ AngularFireDatabase],
   bootstrap: [AppComponent]
