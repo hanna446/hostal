@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CategoriesService } from "../../services/categories.service";
 import { CategoryModels } from "../../models/category.models";
 import { NgForm } from "@angular/forms";
@@ -10,11 +10,12 @@ import swal from "sweetalert2";
   styleUrls: ["./categories.component.css"]
 })
 
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, AfterViewInit {
+  id: string;
   categoriesArray: CategoryModels[] = [];
 
   public cat: CategoryModels = {
-    name: ""
+    name: '',
     // description:""
   };
 
@@ -31,25 +32,37 @@ export class CategoriesComponent implements OnInit {
     this.table();
   }
 
+  getUpdate(cat) {
+    this.id = cat;
+    this.categoriesService.getCategoryById(this.id)
+      .subscribe((data: any) => this.cat = data);
+  }
+
   async onSubmit(f: NgForm) {
-    await swal.fire({
-      title: 'Create your category',
-      input: 'text',
-      showCancelButton: true,
-      inputValidator: value => {
-        this.cat.name = value;
-        if (!value) {
-          return "You need to write something!";
+    if (!this.id) {
+      // guarda
+      this.categoriesService.createCategories(this.cat).subscribe(resp => {
+        swal.fire('Exito', null, 'success');
+        this.getCategories();
+      },
+        err => {
+          swal.fire('Ops error', null, 'error');
         }
-        this.categoriesService.createCategories(this.cat).subscribe(resp => {
-          swal.fire('Exito', null, 'success');
+      );
+
+    } else {
+      // actualiza
+      this.categoriesService.updateCategories(this.cat, this.id).subscribe(
+        data => {
+          swal.fire("exito!", '', "success");
+          this.cat.name = '';
           this.getCategories();
-          err => {
-            swal.fire('Ops error', null, 'error');
-          };
-        });
-      }
-    });
+        },
+        err => {
+          swal.fire("Oops error", '', "error");
+        }
+      );
+    }
   }
 
   getCategories() {
@@ -61,37 +74,13 @@ export class CategoriesComponent implements OnInit {
   onDelete(key: string) {
     this.categoriesService.deleteCategories(key).subscribe(
       resp => {
-        swal.fire("It was successfully removed", null, "success");
+        swal.fire("It was successfully removed", '', "success");
         this.getCategories();
       },
       err => {
         swal.fire("Ops error", null, "error");
       }
     );
-  }
-
-  async update(key: string) {
-    await swal.fire({
-      title: "update you category",
-      input: "text",
-      showCancelButton: true,
-      inputValidator: value => {
-        this.cat.name = value;
-        if (!value) {
-          return "You need to write something!";
-        }
-        this.categoriesService.updateCategories(this.cat, key).subscribe(
-          data => {
-            swal.fire("exito!", null, "success");
-            this.cat.name = "";
-            this.getCategories();
-          },
-          err => {
-            swal.fire("Oops error", null, "error");
-          }
-        );
-      }
-    });
   }
 
   logout() {

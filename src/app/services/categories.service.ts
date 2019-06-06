@@ -8,16 +8,17 @@ import { map } from "rxjs/operators";
 const headers = new HttpHeaders({
   "Content-Type": "application/json"
 });
+
 @Injectable({
   providedIn: "root"
 })
 
 export class CategoriesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createCategories(category: CategoryModels) {
     const body = JSON.stringify(category); // se convierte el dato puro a json
-    let url = URL_SERVICES + "categories.json"; //Aquí se va a enviar el dato
+    let url = URL_SERVICES + "categories.json"; // Aquí se va a enviar el dato
     return this.http.post(url, body, { headers }).pipe(
       map(resp => {
         return resp;
@@ -47,6 +48,15 @@ export class CategoriesService {
   getCategories() {
     let url = URL_SERVICES + `categories.json`;
     return this.http.get(url, { headers }).pipe(
+      map(resp => {
+        return resp;
+      })
+    );
+  }
+
+  getCategoryById(key: string) {
+    const url = URL_SERVICES + `categories/${key}.json`;
+    return this.http.get(url).pipe(
       map(resp => {
         return resp;
       })

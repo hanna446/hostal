@@ -7,7 +7,7 @@ import { SharedModule } from "./shared/shared.module";
 import { AdminModule } from "./admin/admin.module";
 import { PageModule } from "./pages/pages.module";
 import { LoginComponent } from "./auth/login/login.component";
-import { ServicesModule } from './services/services.modules';
+import { ServicesModule } from './services/services.module';
 
 
 // enviroment
@@ -16,7 +16,7 @@ import { environment } from '../environments/environment';
 // Firebase
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireDatabase,AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { FormsModule } from "@angular/forms";
@@ -39,7 +39,7 @@ import { KeyPipe } from './pipes/key.pipe';
     AngularFireDatabaseModule,
     FormsModule
   ],
-  providers: [ AngularFireDatabase],
+  providers: [AngularFireDatabase],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

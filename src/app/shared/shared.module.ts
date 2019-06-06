@@ -10,6 +10,6 @@ import { AppRoutingModule } from '../app-routing.module';
 
   exports: [FooterComponent, NavComponent, NavPagesComponent],
 
-  imports: [CommonModule,AppRoutingModule]
+  imports: [CommonModule, AppRoutingModule]
 })
-export class SharedModule {}
+export class SharedModule { }

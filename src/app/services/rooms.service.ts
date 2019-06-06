@@ -42,12 +42,21 @@ export class RoomsService {
       map(resp => {
         return resp;
       })
-    )
+    );
   }
 
   getRoom() {
     let url = URL_SERVICES + `rooms.json`;
     return this.http.get(url, { headers }).pipe(
+      map(resp => {
+        return resp;
+      })
+    );
+  }
+
+  getRoomById(key: string) {
+    const url = URL_SERVICES + `rooms/${key}.json`;
+    return this.http.get(url).pipe(
       map(resp => {
         return resp;
       })

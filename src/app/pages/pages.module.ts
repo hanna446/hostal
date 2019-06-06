@@ -23,6 +23,6 @@ import { SharedModule } from '../shared/shared.module';
 
   exports: [],
 
-  imports: [CommonModule, AppRoutingModule,SharedModule]
+  imports: [CommonModule, AppRoutingModule, SharedModule]
 })
-export class PageModule {}
+export class PageModule { }

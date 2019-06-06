@@ -11,19 +11,19 @@ import { ServicesModel } from "../../models/our-services.models";
   styleUrls: ["./our-services.component.css"]
 })
 export class OurServicesComponent implements OnInit {
+  id: string;
   public servicesArray: ServicesModel[] = [];
-
   public serv: ServicesModel = {
-    name: "",
-    description: "",
-    hours: "",
-    price: ""
+    name: '',
+    description: '',
+    hours: '',
+    price: ''
   };
 
   constructor(
-    private OurServicesService: OurServicesService,
+    private ourServices: OurServicesService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getService();
@@ -33,39 +33,51 @@ export class OurServicesComponent implements OnInit {
     this.authService.logout();
   }
 
-  onSubmit(f: NgForm) {    
+  onSubmit(f: NgForm) {
     if (!f.valid) {
       return;
     }
-    this.OurServicesService.createService(this.serv).subscribe(data => {
-      swal.fire("EXITO!", null, "success");
-      this.getService();
-      err => {
-        swal.fire("You have an error", null, "error");
-      };
-    });
+
+    if (!this.id) {
+      // guarda
+      this.ourServices.createService(this.serv).subscribe(data => {
+        swal.fire("EXITO!", null, "success");
+        this.getService();
+      },
+        err => {
+          swal.fire("You have an error", null, "error");
+        }
+      );
+
+    } else {
+      // actualiza
+      this.ourServices.updateService(this.serv, this.id).subscribe(
+        data => {
+          swal.fire("Update!", null, "success");
+          this.getService();
+          this.id = '';
+        },
+        err => {
+          swal.fire("You have an error", null, "error");
+          this.id = '';
+        }
+      );
+    }
   }
 
   getService() {
-    this.OurServicesService.getServices().subscribe((data: any) => {
-      this.servicesArray = data;
-    });
+    this.ourServices.getServices().subscribe((data: any) => this.servicesArray = data);
+  }
+
+  getUpdate(serv) {
+    this.id = serv;
+    this.ourServices.getServiceById(this.id)
+      .subscribe((data: any) => this.serv = data);
   }
 
   delete(key: string) {
-    this.OurServicesService.deleteService(key).subscribe(data => {
+    this.ourServices.deleteService(key).subscribe(data => {
       swal.fire("exito!", null, "success");
-      this.getService();
-      err => {
-        swal.fire("You have an error", null, "error");
-      };
-    });
-  }
-
-  update(key: string) {
-    this.OurServicesService.updateService(this.serv, key).subscribe(
-      data => {
-      swal.fire("Exito!", null, "success");
       this.getService();
     },
       err => {
@@ -73,4 +85,6 @@ export class OurServicesComponent implements OnInit {
       }
     );
   }
+
+
 }

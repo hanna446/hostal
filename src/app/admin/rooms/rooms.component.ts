@@ -12,60 +12,77 @@ import swal from 'sweetalert2';
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
-public roomsArray: RoomsModel []=[];
-
-public rom: RoomsModel = {
-number: 0,
-description:"",
-characteristics: "",
-aditionalInfo: "",
-price: 0
-};
+  id: string;
+  public roomsArray: RoomsModel[] = [];
+  public rom: RoomsModel = {
+    number: 0,
+    description: "",
+    characteristics: "",
+    aditionalInfo: "",
+    price: 0
+  };
 
   constructor(
-    private roomsService:RoomsService,
-    private authService:AuthService
+    private roomsService: RoomsService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-  }
-
-onSubmit(f: NgForm) {
-  if (!f.valid) {
-    return;
-  }
-  this.roomsService.createRoom(this.rom).subscribe(data =>{
-    swal.fire('exito', null, 'success');
     this.getRooms();
-  },
-  err => {
-    swal.fire('You have an error', null, 'error');
   }
-  );
-}
 
-getRooms(){
-  this.roomsService.getRoom().subscribe((data: any) => {
-    this.roomsArray = data;
-  });
-}
+  getUpdate(rom) {
+    this.id = rom;
+    this.roomsService.getRoomById(this.id)
+      .subscribe((data: any) => this.rom = data);
+  }
 
-deleteRoom(key: string){
-this.roomsService.deleteRoom(key).subscribe(data => {
-  swal.fire('exito', null, 'success');
-  this.getRooms();
-},
-err => {
-  swal.fire('You have an error', null, 'error');
-}
-);
-}
+  onSubmit(f: NgForm) {
+    if (!f.valid) {
+      return;
+    }
 
-updateRoom(){
+    if (!this.id) {
+      // guarda
+      this.roomsService.createRoom(this.rom).subscribe(data => {
+        swal.fire('exito', null, 'success');
+        this.getRooms();
+      },
+        err => {
+          swal.fire('You have an error', null, 'error');
+        }
+      );
 
-}
+    } else {
+      // actualiza
+      this.roomsService.updateRoom(this.rom, this.id).subscribe(data => {
+        swal.fire("Update!", null, "success");
+        this.getRooms();
+        this.id = '';
+      },
+        err => {
+          swal.fire("You have an error", null, "error");
+          this.id = '';
+        });
+    }
+  }
 
-  logout(){
+  getRooms() {
+    this.roomsService.getRoom().subscribe((data: any) => this.roomsArray = data);
+  }
+
+  deleteRoom(key: string) {
+    this.roomsService.deleteRoom(key).subscribe(data => {
+      swal.fire('exito', null, 'success');
+      this.getRooms();
+    },
+      err => {
+        swal.fire('You have an error', null, 'error');
+      }
+    );
+  }
+
+  logout() {
     this.authService.logout();
   }
 

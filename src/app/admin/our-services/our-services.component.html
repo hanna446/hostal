@@ -88,10 +88,10 @@
                                     <td>{{servicesArray[serv].description}}</td>
                                     <td>{{servicesArray[serv].hours}}</td>
                                     <td>{{servicesArray[serv].price}}</td>
-
                                     <td>
                                       <p data-placement="top" data-toggle="modal" title="Edit">
-                                        <button (click)="update(serv)" class="btn btn-warning btn-xs">
+                                        <button (click)="getUpdate(serv)" data-toggle="modal"
+                                        data-target="#exampleModal" class="btn btn-warning btn-xs">
                                           <span class="glyphicon glyphicon-pencil"></span>
                                         </button>
                                       </p>

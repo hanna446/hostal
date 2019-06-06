@@ -15,8 +15,8 @@ export class OurServicesService {
   constructor(private http: HttpClient) {}
 
   createService(service: ServicesModel) {
-    const body = JSON.stringify(service);
     const url = URL_SERVICES + "services.json";
+    const body = JSON.stringify(service);
     return this.http.post(url, body, { headers }).pipe(
       map(resp => {
         return resp;
@@ -50,5 +50,15 @@ export class OurServicesService {
         return resp;
       })
     );
+  }
+
+  getServiceById(key: string) {
+    const url = URL_SERVICES + `services/${key}.json`;
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
+
   }
 }
