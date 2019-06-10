@@ -7,7 +7,6 @@ import { SingleComponent } from "./pages/single/single.component";
 import { DestinationComponent } from "./pages/destination/destination.component";
 import { DestinationSingleComponent } from "./pages/destination-single/destination-single.component";
 import { HotelSingleComponent } from "./pages/hotel-single/hotel-single.component";
-import { AboutComponent } from "./pages/about/about.component";
 import { CategoriesComponent } from "./admin/categories/categories.component";
 import { OurServicesComponent } from "./admin/our-services/our-services.component";
 import { RoomsComponent } from "./admin/rooms/rooms.component";
@@ -17,7 +16,6 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "about", component: AboutComponent },
   { path: "single", component: SingleComponent },
   { path: "home", component: HomeComponent },
   { path: "destination", component: DestinationComponent },

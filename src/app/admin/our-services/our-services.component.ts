@@ -4,6 +4,8 @@ import { AuthService } from "../../services/auth.service";
 import { NgForm,FormGroup,FormControl, Validators } from "@angular/forms";
 import swal from "sweetalert2";
 import { ServicesModel } from "../../models/our-services.models";
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: "app-our-services",
@@ -11,29 +13,24 @@ import { ServicesModel } from "../../models/our-services.models";
   styleUrls: ["./our-services.component.css"]
 })
 export class OurServicesComponent implements OnInit {
-validate:FormGroup;
-
+  id: string;
+  imgFile: any;
+  url: any;
+  imgSrc: any;
   public servicesArray: ServicesModel[] = [];
-
   public serv: ServicesModel = {
-    name: "",
-    description: "",
-    hours: "",
-    price: ""
+    name: '',
+    description: '',
+    hours: '',
+    price: '',
+    img: ''
   };
 
   constructor(
-    private OurServicesService: OurServicesService,
-    private authService: AuthService
-  ) {
-    this.validate = new FormGroup({
-      'name': new FormControl(''),
-      'description': new FormControl(''),
-      'hours': new FormControl(''),
-      'price': new FormControl('')
-    });
-    
-  }
+    private ourServices: OurServicesService,
+    private authService: AuthService,
+    private storage: AngularFireStorage
+  ) { }
 
   ngOnInit() {
     this.getService();
@@ -43,39 +40,74 @@ validate:FormGroup;
     this.authService.logout();
   }
 
-  onSubmit(f: NgForm) {    
+onUpload(e:any){
+this.imgFile = e.target.files[0];
+if (e.target.files && e.target.files[0]) {
+  const reader = new FileReader();
+
+  reader.onload = (event:any) => {
+    this.imgSrc = event.target.result;
+  };
+
+  reader.readAsDataURL(e.target.files[0]);
+}
+}
+
+  onSubmit(f: NgForm) {
     if (!f.valid) {
       return;
     }
-    this.OurServicesService.createService(this.serv).subscribe(data => {
-      swal.fire("EXITO!", null, "success");
-      this.getService();
-      err => {
-        swal.fire("You have an error", null, "error");
-      };
-    });
+
+    if (!this.id) {
+      // guarda
+      const fileName = `imgs/${new Date().valueOf().toString()}`;
+      const ref = this.storage.ref(fileName);
+      const task = this.storage.upload(fileName, this.imgFile);
+
+      task.snapshotChanges().pipe(finalize(async () => {
+
+        this.serv.img = await ref.getDownloadURL().toPromise();
+
+      })).subscribe();
+
+      this.ourServices.createService(this.serv).subscribe(data => {
+        swal.fire("EXITO!", null, "success");
+        this.getService();
+      },
+        err => {
+          swal.fire("You have an error", null, "error");
+        }
+      );
+
+    } else {
+      // actualiza
+      this.ourServices.updateService(this.serv, this.id).subscribe(
+        data => {
+          swal.fire("Update!", null, "success");
+          this.getService();
+          this.id = '';
+        },
+        err => {
+          swal.fire("You have an error", null, "error");
+          this.id = '';
+        }
+      );
+    }
   }
 
   getService() {
-    this.OurServicesService.getServices().subscribe((data: any) => {
-      this.servicesArray = data;
-    });
+    this.ourServices.getServices().subscribe((data: any) => this.servicesArray = data);
+  }
+
+  getUpdate(serv) {
+    this.id = serv;
+    this.ourServices.getServiceById(this.id)
+      .subscribe((data: any) => this.serv = data);
   }
 
   delete(key: string) {
-    this.OurServicesService.deleteService(key).subscribe(data => {
+    this.ourServices.deleteService(key).subscribe(data => {
       swal.fire("exito!", null, "success");
-      this.getService();
-      err => {
-        swal.fire("You have an error", null, "error");
-      };
-    });
-  }
-
-  update(key: string) {
-    this.OurServicesService.updateService(this.serv, key).subscribe(
-      data => {
-      swal.fire("Exito!", null, "success");
       this.getService();
     },
       err => {
@@ -83,4 +115,7 @@ validate:FormGroup;
       }
     );
   }
+
+
+
 }

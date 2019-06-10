@@ -6,8 +6,8 @@ import { CanActivate } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService:AuthService) {}
-    canActivate() {
-      return this.authService.isAuth();
-    }  
+  constructor(private authService: AuthService) { }
+  canActivate() {
+    return this.authService.isAuth();
+  }
 }

@@ -92,16 +92,22 @@
     <div class="row">
       <div class="col-md-12">
         <div class="search-wrap-1  p-4">
+        <!-- form -->
           <form action="#" class="search-property-1">
             <div class="row">
               <div class="col-lg align-items-end">
                 <div class="form-group">
                   <label for="#">Check-in date</label>
+                  <!-- <mat-form-field>
+                    <input [matDatepicker]="dp3" type="text" class="form-control checkin_date" placeholder="Check In Date" disabled />  
+                    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                  </mat-form-field>  -->
                   <div class="form-field">
                     <div class="icon">
                       <span class="ion-ios-calendar"></span>
-                    </div>
-                    <input type="text" class="form-control checkin_date" placeholder="Check In Date" />
+                    </div>                    
+                    <input type="text" class="form-control checkin_date" placeholder="Check In Date"/>                                    
                   </div>
                 </div>
               </div>
@@ -244,6 +250,49 @@
 </section>
 <!-- our services_END -->
 
+<!-- About us -->
+<section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+  <div class="container">
+    <div class="row no-gutters d-flex">
+      <div class="col-md-6 col-lg-5 d-flex">
+        <div class="img d-flex align-self-stretch align-items-center"
+          style="background-image:url(assets/images/about.jpg);"></div>
+      </div>
+      
+      <div class="col-md-6 col-lg-7 px-lg-5 py-md-5 bg-darken">
+        <div class="py-md-5">
+          <div class="row justify-content-start pb-3">
+            <div class="col-md-12 heading-section  p-5 p-lg-0">
+              <span class="subheading">Get in touch with us</span>
+              <h2 class="mb-4">Get Best Travel Deals</h2>
+              <p>
+                A small river named Duden flows by their place and supplies it
+                with the necessary regelialia. It is a paradisematic country, in
+                which roasted parts of sentences fly into your mouth.
+              </p>
+              <p>
+                Even the all-powerful Pointing has no control about the blind
+                texts it is an almost unorthographic life One day however a
+                small line of blind text by the name of Lorem Ipsum decided to
+                leave for the far World of Grammar.
+              </p>
+              <p>
+                A small river named Duden flows by their place and supplies it
+                with the necessary regelialia. It is a paradisematic country, in
+                which roasted parts of sentences fly into your mouth.
+              </p>
+              <p>
+                <a routerLink="/" class="btn btn-primary py-3 px-4">Book now</a>
+                <a href="#contact-section" class="btn btn-white py-3 px-4">Contact us</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- About us end -->
 <section class="ftco-intro img" id="destination-section" style="background-image: url(assets/images/bg_3.jpg);">
   <div class="overlay"></div>
   <div class="container">

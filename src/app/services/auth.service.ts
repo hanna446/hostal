@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
 import { UserModel } from "../models/user.models";
 import { Router } from "@angular/router";
 
-import Swal from "sweetalert2";
+import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { map } from "rxjs/operators";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +15,7 @@ export class AuthService {
     private afAauth: AngularFireAuth,
     private router: Router,
     private afDB: AngularFireDatabase
-  ) {}
+  ) { }
 
   login(data: UserModel) {
     this.afAauth.auth
@@ -63,12 +63,11 @@ export class AuthService {
   isAuth() {
     return this.afAauth.authState.pipe(
       map(fbUser => {
-        console.log(fbUser);
-
         if (fbUser == null) {
           this.router.navigate(["/login"]);
           console.log(fbUser);
         }
+
         return fbUser != null;
       })
     );

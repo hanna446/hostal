@@ -17,7 +17,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.onCarousel();
     this.ViewPopup();
+    this.stellar();
   }
+
+ stellar(){
+	"use strict";
+  $(window).stellar({
+    responsive: true,
+    parallaxBackgrounds: true,
+    parallaxElements: true,
+    horizontalScrolling: false,
+    hideDistantElements: false,
+    scrollProperty: 'scroll'
+  });}
+
 
   // JQUERY carousel
   onCarousel() {

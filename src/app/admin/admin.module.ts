@@ -11,8 +11,9 @@ import { KeyPipe } from '../pipes/key.pipe';
 
 
 @NgModule({
-  declarations:[CategoriesComponent,OurServicesComponent,RoomsComponent,KeyPipe],
-  exports:[],
-  imports:[CommonModule,AppRoutingModule,SharedModule,FormsModule]})
+  declarations: [CategoriesComponent, OurServicesComponent, RoomsComponent, KeyPipe],
+  exports: [],
+  imports: [CommonModule, AppRoutingModule, SharedModule, FormsModule]
+})
 
-export class AdminModule{}
+export class AdminModule { }

@@ -1,175 +1,94 @@
-<app-nav></app-nav>
+<app-nav-pages></app-nav-pages>
 
 <div class="page-content">
-  <div class="row">
-    <!-- Main menu -->
-    <div class="col-md-2">
-      <div class="sidebar content-box" style="display: block;">
-        <ul class="nav">
-          <li>
-            <a routerLink="/admin/rooms"><i class="glyphicon glyphicon-home"></i>Rooms</a>
-          </li>
-          <li>
-            <a routerLink="/admin/categories"><i class="glyphicon glyphicon-home"></i>Categories</a>
-          </li>
-
-          <li class="submenu open">
-              <a routerLink="/admin/categories">
-                 <i class="glyphicon glyphicon-list"></i> Pages
-                 <span class="caret pull-right"></span>
-              </a>
-              <!-- Sub menu -->
-              <ul>
-                 <li><a href="login.html">Login</a></li>
-                 <li><a href="signup.html">Signup</a></li>
-             </ul>
-         </li>
-          <li>
-            <a (click)="logout()"><i class="glyphicon glyphicon-home"></i>Exit</a>
-          </li>
-        </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="sidebar content-box margin" style="display: block;">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"><i class="fa fa-bed"></i>Rooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-list"></i>Categories</a>
+            </li>                    
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-home"></i>Exit</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <!-- / Main menu-->
 
-    <div class="col-md-10">
-      <div class="row">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="content-box-large">
-              <div class="panel-heading">
-                <div class="panel-title">Categories Management</div>
-
-                <div class="panel-options">
-                  <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-                  <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-                </div>
+      <div class="col-md-10">
+        <div class="container">
+          <div class="content-box-large">
+            <div class="row">
+            <div class="panel-heading">
+              <div class="panel-title">Categories Management</div>
+            </div>
+            <!-- button-add -->
+            <div class="col col-xs-6 text-right">
+              <p><button class="btn btn-add btn-xs"
+                data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span
+                class="fa fa-plus-square"></span></button></p>
               </div>
-              <div class="panel-body">
-                <div id="rootwizard">
-                  <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
-                        role="tab" aria-controls="nav-home" aria-selected="true">Info</a>
-                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                        aria-controls="nav-profile" aria-selected="false">Picture</a>
-                      <!-- button add -->
-                      <button (click)="onSubmit(cat)" class="btn btn-success btn-xs">
-                        <span class="glyphicon glyphicon-plus"></span>
-                      </button>
-                    </div>
-                  </nav>
-
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <!-- Table -->
-                            <div class="table-responsive">
-                              <table id="mytable" class="table table-bordered table-striped table-responsive">
-                                <thead>
-                                  <th>Category name</th>
-                                  <th>Description</th>
-                                  <th>Edit</th>
-                                  <th>Delete</th>
-                                </thead>
-                                <tbody>
-                                  <tr *ngFor="
-                                      let cat of categoriesArray | keys;
-                                      let i = index
-                                    ">
-                                    <td>{{ categoriesArray[cat].name }}</td>
-                                    <!-- <td>{{ categoriesArray[cat].description }}</td> -->
-
-                                    <td>
-                                      <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                        <button (click)="update(cat)" class="btn btn-warning btn-xs">
-                                          <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                      </p>
-                                    </td>
-
-                                    <td>
-                                      <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                        <button class="btn btn-danger btn-xs" (click)="onDelete(cat)">
-                                          <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                      </p>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- Table end-->
-                          </div>
-                        </div>
-                      </div>
-                      <!-- modal -->
-                      <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                              </button>
-                              <h4 class="modal-title custom_align" id="Heading">
-                                Edit Your Detail
-                              </h4>
-                            </div>
-                            <!-- modal content -->
-                            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-                              <div class="modal-body">
-                                <div class="form-group">
-                                  <input [(ngModel)]="cat.name" name="name" class="form-control " type="text"
-                                    required />
-                                </div>
-                              </div>
-
-                              <div class="modal-footer ">
-                                <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;">
-                                  <span class="glyphicon glyphicon-ok-sign"></span>
-                                  Update
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                        <!-- /.modal-content -->
-                      </div>
-                      <!-- /.modal-dialog -->
-                    </div>
-
-                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit"
-                      aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                          </div>
-
-                          <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                      ...
-                    </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                      ...
-                    </div>
-                  </div>
-                </div>
+              <hr>
+              <div class="panel-body col-xs-12">
+                <div class="table-responsive col-xs-12">
+                  <table id="mytable" class="table">
+                    <thead>
+                      <tr>                                          
+                        <th>Category name</th>                                            
+                        <th>Edit</th>                                            
+                        <th>Delete</th>                                            
+                      </tr>
+                    </thead>
+                  <tbody>    
+                  <tr *ngFor="
+                    let cat of categoriesArray | keys;
+                    let i = index">                                   
+                      <td>{{ categoriesArray[cat].name }}</td>                                          
+                    <td>
+                      <p data-placement="top" data-toggle="modal" title="Edit"><button (click)="getUpdate(cat)" class="btn btn-edit btn-xs"
+                           data-target="#exampleModal"><span
+                            class="fa fa-pencil"></span></button></p>
+                    </td>
+                    <td>
+                      <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="onDelete(cat)" class="btn btn-delete btn-xs"><span
+                            class="fa fa-trash"></span></button></p>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-
-        <!--  Page content -->
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create a new service</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form ngNativeValidate (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input [(ngModel)]="cat.name" name="name" type="text" required class="form-control" >
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit"  class="btn btn-primary">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

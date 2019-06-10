@@ -4,5 +4,6 @@ export interface RoomsModel {
   characteristics: string;
   aditionalInfo: string;
   price: number;
+  img:string;
   keys?: string;
 }

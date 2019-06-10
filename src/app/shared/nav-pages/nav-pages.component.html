@@ -4,29 +4,38 @@
     <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="oi oi-menu"></span> Menu
     </button>
-
     <div class="collapse navbar-collapse" id="ftco-nav">
-      <ul class="navbar-nav nav ml-auto">
-        <li class="nav-item"><a routerLink="/home" class="nav-link"><span>Home</span></a></li>
-        <li class="nav-item"><a routerLink="/services" class="nav-link"><span>Services</span></a></li>
-        <li class="nav-item"><a routerLink="/about" class="nav-link"><span>About</span></a></li>
-        <li class="nav-item"><a routerLink="/destination" class="nav-link"><span>Destination</span></a></li>
-        <li class="nav-item"><a routerLink="/hotel" class="nav-link"><span>Hotel</span></a></li>
-        <li class="nav-item"><a routerLink="/resturant" class="nav-link"><span>Restaurant</span></a></li>	          
-        <li class="nav-item"><a routerLink="/home" class="nav-link"><span>Contact</span></a></li>
-        <li class="nav-item dropdown">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Admin
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <button routerLink="/admin/categories" class="dropdown-item" type="button">Categories</button>
-                  <button routerLink="/admin/rooms" class="dropdown-item" type="button">Rooms</button>
-                  <button routerLink="/admin/our-services" class="dropdown-item" type="button">Services</button>
-                </div>
-              </div>
-        </li>
-      </ul>
-    </div>
+        <ul class="navbar-nav nav ml-auto">
+          <li class="nav-item">
+              <a routerLink="/home" class="nav-link"><span>Home</span></a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/services" class="nav-link"><span>Services</span></a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/home" class="nav-link"><span>About</span></a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/destination" class="nav-link"><span>Destination</span></a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/hotel" class="nav-link"><span>Hotel</span></a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/restaurant" class="nav-link"><span>Restaurant</span></a>
+          </li>
+          <li class="nav-item">
+            <a  routerLink="/home"class="nav-link"><span>Contact</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="/admin/categories">Categories</a>
+              <a class="dropdown-item" routerLink="/admin/rooms">Rooms</a>
+              <a class="dropdown-item" routerLink="/admin/our-services">Services</a>                        
+            </div>
+          </li>
+        </ul>
+      </div>
   </div>
 </nav>
