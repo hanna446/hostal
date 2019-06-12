@@ -23,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegisterComponent } from './auth/register/register.component';
 import { KeyPipe } from './pipes/key.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -41,8 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    // MaterialModule
+    BrowserAnimationsModule,    
   ],
   providers: [AngularFireDatabase],
   bootstrap: [AppComponent]

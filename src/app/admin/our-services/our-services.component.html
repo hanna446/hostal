@@ -5,32 +5,32 @@
     <div class="row">
       <div class="col-md-2">
         <div class="sidebar content-box margin" style="display: block;">
-           <ul class="nav">
-          <!-- Main menu -->
-          <li>
-            <a routerLink="/admin/rooms"><i class="fa fa-bed"></i>Rooms</a>
-          </li>
-          <li>
-            <a routerLink="/admin/categories"><i class="fa fa-list"></i>Categories</a>
-          </li>
+          <ul class="nav">
+            <!-- Main menu -->
+            <li>
+              <a routerLink="/admin/rooms"><i class="fa fa-bed"></i>Rooms</a>
+            </li>
+            <li>
+              <a routerLink="/admin/categories"><i class="fa fa-list"></i>Categories</a>
+            </li>
 
-          <li class="submenu">
-            <a routerLink="/">
-              <i class="fa fa-concierge-bell"></i> Services
-              <span class="caret pull-right"></span>
-            </a>
-            <!-- Sub menu -->
-            <ul>
-              <li><a href="login.html">Restaurant</a><i class="fa fa-utensils"></i></li>
-              <li><a href="signup.html">Salons</a><i class="fa fa-glass-cheers"></i></li>
-              <li><a routerLink="admin/our-services">Others</a><i class="fa fa-layer-group"></i></li>
-            </ul>
-            <!-- Sub menu end-->
-          </li>
-          <li>
-            <a (click)="logout()"><i class="fa fa-home"></i>Exit</a>
-          </li>
-        </ul>
+            <li class="submenu">
+              <a routerLink="/">
+                <i class="fa fa-concierge-bell"></i> Services
+                <span class="caret pull-right"></span>
+              </a>
+              <!-- Sub menu -->
+              <ul>
+                <li><a href="login.html">Restaurant</a><i class="fa fa-utensils"></i></li>
+                <li><a href="signup.html">Salons</a><i class="fa fa-glass-cheers"></i></li>
+                <li><a routerLink="admin/our-services">Others</a><i class="fa fa-layer-group"></i></li>
+              </ul>
+              <!-- Sub menu end-->
+            </li>
+            <li>
+              <a (click)="logout()"><i class="fa fa-home"></i>Exit</a>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -42,42 +42,41 @@
             </div>
             <!-- button-add -->
             <div class="col col-xs-6 text-right">
-                <p><button class="btn btn-add btn-xs"
-                data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span
-                    class="fa fa-plus-square"></span></button></p>
-              </div>
+              <p><button class="btn btn-add btn-xs" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span class="fa fa-plus-square"></span></button></p>
+            </div>
             <div class="panel-body">
               <div class="table-responsive">
                 <table id="mytable" class="table table-bordered table-striped table-responsive">
                   <thead>
-                    <tr>                      
-                       <th>Image</th>
-                       <th>Service name</th>
+                    <tr>
+                      <th>Image</th>
+                      <th>Service name</th>
                       <th>Description</th>
                       <th>Hours</th>
-                      <th>Price</th>                                        
-                      <th>Edit</th>                                            
-                      <th>Delete</th>                                            
+                      <th>Price</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
-                  <tbody>    
-                  <tr *ngFor="
+                  <tbody>
+                    <tr *ngFor="
                     let serv of servicesArray | keys;
                     let i = index">
-                     <td><img src="{{servicesArray[serv].img}}"></td>
-                     <td>{{servicesArray[serv].name}}</td>
-                     <td>{{servicesArray[serv].description}}</td>
-                     <td>{{servicesArray[serv].hours}}</td>
-                     <td>{{servicesArray[serv].price}}</td>                                        
-                    <td>
-                      <p  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Edit"><button (click)="getUpdate(serv)" class="btn btn-edit btn-xs"
-                           data-target="#exampleModal"><span
-                            class="fa fa-pencil"></span></button></p>
-                    </td>
-                    <td>
-                      <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="delete(serv)" class="btn btn-delete btn-xs"><span
-                            class="fa fa-trash"></span></button></p>
-                    </td>
+                      <td><img *ngIf="servicesArray[serv].img" 
+                        (click)="viewImage( servicesArray[serv].img )" 
+                        data-toggle="modal" data-target="#myModal" data-whatever="@mdo" 
+                        class="img-50 pointer" 
+                        src="{{servicesArray[serv].img}}"></td>
+                      <td>{{servicesArray[serv].name}}</td>
+                      <td>{{servicesArray[serv].description}}</td>
+                      <td>{{servicesArray[serv].hours}}</td>
+                      <td>{{servicesArray[serv].price}}</td>
+                      <td>
+                        <p data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Edit"><button (click)="getUpdate(serv)" class="btn btn-edit btn-xs" data-target="#exampleModal"><span class="fa fa-pencil"></span></button></p>
+                      </td>
+                      <td>
+                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="delete(serv)" class="btn btn-delete btn-xs"><span class="fa fa-trash"></span></button></p>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -89,7 +88,7 @@
     </div>
   </div>
 </div>
-
+// modal normal
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -107,7 +106,7 @@
               <div class="item active">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Name:</label>
-                  <input [(ngModel)]="serv.name" type="text" class="form-control" name="name" required maxlength=80 >
+                  <input [(ngModel)]="serv.name" type="text" class="form-control" name="name" required maxlength=80>
                 </div>
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Description:</label>
@@ -115,23 +114,21 @@
                 </div>
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Hours:</label>
-                  <input [(ngModel)]="serv.hours" type="text" class="form-control" name="hours" required >
+                  <input [(ngModel)]="serv.hours" type="text" class="form-control" name="hours" required>
                 </div>
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Price:</label>
                   <input [(ngModel)]="serv.price" type="number" class="form-control" name="price" required>
                 </div>
-
-
               </div>
               <div class="item">
                 <!-- <form> -->
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">Image:</label>
-                  <input type="file" (change)="onUpload($event)" name="image" >
+                  <input type="file" (change)="onUpload($event)" name="image">
                 </div>
                 <div *ngIf="imgSrc" class="text-center">
-                  <img [src]="imgSrc">
+                  <img class="w150" [src]="imgSrc">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -148,9 +145,11 @@
 
           <!-- Controls -->
           <button class=" btn btn-primary" href="#carousel-example-generic" role="button" data-slide="next">Next
-            <span class="fa fa-chevron-right"></span></button>      
+            <span class="fa fa-chevron-right"></span></button>
         </div>
       </div>
     </div>
   </div>
 </div>
+// modal component
+<app-modals [img]="url"></app-modals>

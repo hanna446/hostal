@@ -51,11 +51,12 @@
                 <table id="mytable" class="table table-bordered table-striped table-responsive">
                   <thead>
                     <tr>                      
+                      <th>Image</th>
                       <th>Room number</th>
                       <th>Description</th>
                       <th>Characteristics</th>
                       <th>AditionalInfo</th>
-                      <th>Price</th>                                           
+                      <th>Price</th>                                                                
                       <th>Edit</th>                                            
                       <th>Delete</th>                                            
                     </tr>
@@ -64,6 +65,9 @@
                   <tr *ngFor="
                     let rom of roomsArray | keys;
                     let i = index">                                   
+                      <td> <img 
+                        (click)="viewImage(roomsArray[rom].image)"
+                        class= "pointer img-50" src="{{ roomsArray[rom].image }}"> </td>
                       <td>{{ roomsArray[rom].number }}</td>
                       <td>{{ roomsArray[rom].description }}</td>
                       <td>{{ roomsArray[rom].characteristics }}</td>
@@ -130,3 +134,4 @@
     </div>
   </div>
 </div>
+<app-modals [img]="url"></app-modals>

@@ -7,11 +7,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from "@angular/forms";
 import { KeyPipe } from '../pipes/key.pipe';
+import { ModalsComponent } from '../components/modals/modals.component';
 
 
 
 @NgModule({
-  declarations: [CategoriesComponent, OurServicesComponent, RoomsComponent, KeyPipe],
+  declarations: [CategoriesComponent, OurServicesComponent, RoomsComponent, KeyPipe, ModalsComponent],
   exports: [],
   imports: [CommonModule, AppRoutingModule, SharedModule, FormsModule]
 })

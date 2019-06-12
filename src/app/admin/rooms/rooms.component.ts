@@ -12,7 +12,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
-   id: string;
+  id: string;
+  url;
   public roomsArray: RoomsModel[] = [];
   public rom: RoomsModel = {
     number: 0,
@@ -83,6 +84,10 @@ export class RoomsComponent implements OnInit {
     );
   }
 
+  viewImage(img) {
+    this.url = img;
+  }
+  
   logout() {
     this.authService.logout();
   }

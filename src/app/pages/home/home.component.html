@@ -6,8 +6,7 @@
     <div class="slider-item">
       <div class="overlay"></div>
       <div class="container-fluid p-0">
-        <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
-          data-scrollax-parent="true">
+        <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
           <div class="one-third order-md-last">
             <div class="img" style="background-image:url(assets/images/bg_1.jpg);">
               <div class="overlay"></div>
@@ -22,7 +21,7 @@
 
           <div class="one-forth d-flex align-items-center " data-scrollax=" properties: { translateY: '70%' }">
             <div class="text">
-              
+
               <span class="subheading pl-5">Discover Greece</span>
               <h1 class="mb-4 mt-3">
                 Explore Your Travel Destinations like never before
@@ -33,8 +32,7 @@
               </p>
 
               <p>
-                <a routerLink="/home" class="btn btn-primary px-5 py-3 mt-3">Discover <span
-                    class="ion-ios-arrow-forward"></span></a>
+                <a routerLink="/home" class="btn btn-primary px-5 py-3 mt-3">Discover <span class="ion-ios-arrow-forward"></span></a>
               </p>
             </div>
           </div>
@@ -45,8 +43,7 @@
     <div class="slider-item">
       <div class="overlay"></div>
       <div class="container-fluid p-0">
-        <div class="row d-flex no-gutters slider-text align-items-center justify-content-end"
-          data-scrollax-parent="true">
+        <div class="row d-flex no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
           <div class="one-third order-md-last">
             <div class="img" style="background-image:url(assets/images/bg_2.jpg);">
               <div class="overlay"></div>
@@ -65,8 +62,7 @@
               </p>
 
               <p>
-                <a routerLink="/destination" class="btn btn-primary px-5 py-3 mt-3">Discover <span
-                    class="ion-ios-arrow-forward"></span></a>
+                <a routerLink="/destination" class="btn btn-primary px-5 py-3 mt-3">Discover <span class="ion-ios-arrow-forward"></span></a>
               </p>
             </div>
           </div>
@@ -92,7 +88,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="search-wrap-1  p-4">
-        <!-- form -->
+          <!-- form -->
           <form action="#" class="search-property-1">
             <div class="row">
               <div class="col-lg align-items-end">
@@ -103,11 +99,20 @@
                     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                   </mat-form-field>  -->
+
+
                   <div class="form-field">
                     <div class="icon">
                       <span class="ion-ios-calendar"></span>
-                    </div>                    
-                    <input type="text" class="form-control checkin_date" placeholder="Check In Date"/>                                    
+                    </div>
+                    <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      
                   </div>
                 </div>
               </div>
@@ -255,10 +260,9 @@
   <div class="container">
     <div class="row no-gutters d-flex">
       <div class="col-md-6 col-lg-5 d-flex">
-        <div class="img d-flex align-self-stretch align-items-center"
-          style="background-image:url(assets/images/about.jpg);"></div>
+        <div class="img d-flex align-self-stretch align-items-center" style="background-image:url(assets/images/about.jpg);"></div>
       </div>
-      
+
       <div class="col-md-6 col-lg-7 px-lg-5 py-md-5 bg-darken">
         <div class="py-md-5">
           <div class="row justify-content-start pb-3">
@@ -328,8 +332,7 @@
         <div class="project">
           <div class="img">
             <div class="vr"><span>Sale</span></div>
-            <a routerLink="/destination"><img src="assets/images/destination-1.jpg" class="img-fluid"
-                alt="Colorlib Template" /></a>
+            <a routerLink="/destination"><img src="assets/images/destination-1.jpg" class="img-fluid" alt="Colorlib Template" /></a>
           </div>
           <div class="text">
             <h4 class="price"><span class="old-price mr-2">$500</span>$400</h4>
@@ -348,8 +351,7 @@
               </div>
             </div>
           </div>
-          <a href="assets/images/destination-1.jpg"
-            class="icon image-popup d-flex justify-content-center align-items-center">
+          <a href="assets/images/destination-1.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="icon-expand"></span>
           </a>
         </div>
@@ -357,8 +359,7 @@
       <div class="col-md-6 col-lg-4 ">
         <div class="project">
           <div class="img">
-            <a routerLink="/destination"><img src="assets/images/destination-2.jpg" class="img-fluid"
-                alt="Colorlib Template" /></a>
+            <a routerLink="/destination"><img src="assets/images/destination-2.jpg" class="img-fluid" alt="Colorlib Template" /></a>
           </div>
           <div class="text">
             <h4 class="price">$400</h4>
@@ -377,8 +378,7 @@
               </div>
             </div>
           </div>
-          <a href="assets/images/destination-2.jpg"
-            class="icon image-popup d-flex justify-content-center align-items-center">
+          <a href="assets/images/destination-2.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="icon-expand"></span>
           </a>
         </div>
@@ -386,8 +386,7 @@
       <div class="col-md-6 col-lg-4 ">
         <div class="project">
           <div class="img">
-            <a routerLink="/destination"><img src="assets/images/destination-3.jpg" class="img-fluid"
-                alt="Colorlib Template" /></a>
+            <a routerLink="/destination"><img src="assets/images/destination-3.jpg" class="img-fluid" alt="Colorlib Template" /></a>
           </div>
           <div class="text">
             <h4 class="price">$400</h4>
@@ -406,8 +405,7 @@
               </div>
             </div>
           </div>
-          <a href="assets/images/destination-3.jpg"
-            class="icon image-popup d-flex justify-content-center align-items-center">
+          <a href="assets/images/destination-3.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="icon-expand"></span>
           </a>
         </div>
@@ -415,8 +413,7 @@
       <div class="col-md-6 col-lg-4 ">
         <div class="project">
           <div class="img">
-            <a routerLink="/destination"><img src="assets/images/destination-4.jpg" class="img-fluid"
-                alt="Colorlib Template" /></a>
+            <a routerLink="/destination"><img src="assets/images/destination-4.jpg" class="img-fluid" alt="Colorlib Template" /></a>
           </div>
           <div class="text">
             <h4 class="price">$400</h4>
@@ -435,8 +432,7 @@
               </div>
             </div>
           </div>
-          <a href="assets/images/destination-4.jpg"
-            class="icon image-popup d-flex justify-content-center align-items-center">
+          <a href="assets/images/destination-4.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="icon-expand"></span>
           </a>
         </div>
@@ -444,8 +440,7 @@
       <div class="col-md-6 col-lg-4 ">
         <div class="project">
           <div class="img">
-            <a routerLink="/destination"><img src="assets/images/destination-5.jpg" class="img-fluid"
-                alt="Colorlib Template" /></a>
+            <a routerLink="/destination"><img src="assets/images/destination-5.jpg" class="img-fluid" alt="Colorlib Template" /></a>
           </div>
           <div class="text">
             <h4 class="price">$400</h4>
@@ -464,8 +459,7 @@
               </div>
             </div>
           </div>
-          <a href="assets/images/destination-5.jpg"
-            class="icon image-popup d-flex justify-content-center align-items-center">
+          <a href="assets/images/destination-5.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="icon-expand"></span>
           </a>
         </div>
@@ -473,8 +467,7 @@
       <div class="col-md-6 col-lg-4 ">
         <div class="project">
           <div class="img">
-            <a routerLink="/destination"><img src="assets/images/destination-6.jpg" class="img-fluid"
-                alt="Colorlib Template" /></a>
+            <a routerLink="/destination"><img src="assets/images/destination-6.jpg" class="img-fluid" alt="Colorlib Template" /></a>
           </div>
           <div class="text">
             <h4 class="price">$400</h4>
@@ -493,8 +486,7 @@
               </div>
             </div>
           </div>
-          <a href="assets/images/destination-6.jpg"
-            class="icon image-popup d-flex justify-content-center align-items-center">
+          <a href="assets/images/destination-6.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
             <span class="icon-expand"></span>
           </a>
         </div>
