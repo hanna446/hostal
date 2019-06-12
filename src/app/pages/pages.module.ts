@@ -8,7 +8,8 @@ import { HotelComponent } from "./hotel/hotel.component";
 import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 import { SingleComponent } from './single/single.component';
 import { SharedModule } from '../shared/shared.module';
-// import { MaterialModule } from '../material/material.module';
+// import { KeyPipe } from '../pipes/key.pipe';
+
 
 @NgModule({
   declarations: [  
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     HotelComponent,
     HotelSingleComponent,
     SingleComponent,
+    // KeyPipe
   ],
 
   exports: [],

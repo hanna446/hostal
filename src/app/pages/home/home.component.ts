@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { OurServicesService } from '../../services/our-services.service';
+import { ServicesModel } from '../../models/our-services.models';
 declare var $: any;
 
 @Component({
@@ -7,11 +9,13 @@ declare var $: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-
-  constructor() { }
+  servicesArray: ServicesModel[] = [];
+  constructor(
+    private ourServices: OurServicesService
+  ) { }
 
   ngOnInit() {
-
+    this.getServices();
   }
 
   ngAfterViewInit() {
@@ -20,16 +24,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.stellar();
   }
 
- stellar(){
-	"use strict";
-  $(window).stellar({
-    responsive: true,
-    parallaxBackgrounds: true,
-    parallaxElements: true,
-    horizontalScrolling: false,
-    hideDistantElements: false,
-    scrollProperty: 'scroll'
-  });}
+  getServices() {
+    this.ourServices.getServices().subscribe((data: any) => this.ourServices = data);
+  }
+
+  stellar() {
+    "use strict";
+    $(window).stellar({
+      responsive: true,
+      parallaxBackgrounds: true,
+      parallaxElements: true,
+      horizontalScrolling: false,
+      hideDistantElements: false,
+      scrollProperty: 'scroll'
+    });
+  }
 
 
   // JQUERY carousel
@@ -81,26 +90,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-// magnific popup
-ViewPopup(){
-	$('.image-popup').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    closeBtnInside: false,
-    fixedContentPos: true,
-    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-     gallery: {
-      enabled: true,
-      navigateByImgClick: true,
-      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-    },
-    image: {
-      verticalFit: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300 // don't foget to change the duration also in CSS
-    }
-  });
-}
+  // magnific popup
+  ViewPopup() {
+    $('.image-popup').magnificPopup({
+      type: 'image',
+      closeOnContentClick: true,
+      closeBtnInside: false,
+      fixedContentPos: true,
+      mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+        preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+      },
+      image: {
+        verticalFit: true
+      },
+      zoom: {
+        enabled: true,
+        duration: 300 // don't foget to change the duration also in CSS
+      }
+    });
+  }
 }

@@ -1,4 +1,5 @@
 export interface RoomsModel {
+  categoryId: string;
   number: number;
   description: string;
   characteristics: string;

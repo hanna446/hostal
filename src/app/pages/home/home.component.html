@@ -101,7 +101,8 @@
                   <!-- <mat-form-field>
                     <input [matDatepicker]="dp3" type="text" class="form-control checkin_date" placeholder="Check In Date" disabled />  
                     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                    <mat-datepicker #dp3
+                     disabled="false"></mat-datepicker>
                   </mat-form-field>  -->
                   <div class="form-field">
                     <div class="icon">
@@ -194,8 +195,8 @@
           <div class="icon justify-content-center align-items-center d-flex">
             <span class="flaticon-gliding"></span>
           </div>
-          <div class="media-body">
-            <h3 class="heading mb-3">Humid areas</h3>
+          <div *ngFor="let serv of servicesArray | keys" class="media-body">
+            <h3  class="heading mb-3"></h3>
             <p>
               A small river named Duden flows by their place and supplies it
               with the necessary regelialia.

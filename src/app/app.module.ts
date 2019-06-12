@@ -20,13 +20,14 @@ import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/da
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RegisterComponent } from './auth/register/register.component';
-import { KeyPipe } from './pipes/key.pipe';
+import { RegisterComponent } from './auth/register/register.component'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // import { MaterialModule } from './material/material.module';
+import { KeyPipe } from './pipes/key.pipe'; 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent,KeyPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
