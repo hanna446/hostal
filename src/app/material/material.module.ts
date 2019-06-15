@@ -1,14 +1,20 @@
 import { NgModule } from "@angular/core";
-import { MatDatepickerModule, MatDatepickerToggleIcon } from "@angular/material/datepicker";
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import {
+  MatFormFieldModule, MatFormFieldControl,
+} from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
 
 const MaterialComponents = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatFormFieldModule,
   MatDatepickerModule,
-  MatDatepickerToggleIcon
+  MatDatepickerModule,
+  MatIconModule,
+  // MatFormFieldControl
+  // MatDatepickerInput
 ];
 
 @NgModule({

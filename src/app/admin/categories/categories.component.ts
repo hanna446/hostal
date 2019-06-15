@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   public cat: CategoryModels = {
     name: '',
-    // description:""
+    description:''
   };
 
   constructor(

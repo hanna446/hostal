@@ -1,17 +1,27 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { OurServicesService } from "../../services/our-services.service";
+import { ServicesModel } from "../../models/our-services.models";
+import { NgForm } from "@angular/forms";
+import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 declare var $: any;
 
 @Component({
-  selector: 'app-sections',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: "app-sections",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  servicesArray: ServicesModel[] = [];
 
-  constructor() { }
+  public formQuote = {
+    dateIn: "",
+    dateOut: "",
+    room: ""
+  };
+  constructor(private ourServices: OurServicesService) {}
 
   ngOnInit() {
-
+    this.getServices();
   }
 
   ngAfterViewInit() {
@@ -20,30 +30,53 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.stellar();
   }
 
- stellar(){
-	"use strict";
-  $(window).stellar({
-    responsive: true,
-    parallaxBackgrounds: true,
-    parallaxElements: true,
-    horizontalScrolling: false,
-    hideDistantElements: false,
-    scrollProperty: 'scroll'
-  });}
+  onsubmit(f: NgForm) {
+    // console.log(f.value);
+  }
 
+  addEvent(type: string, event: any) {
+    if (type.indexOf('changeIn') === -1) {
+      this.formQuote.dateOut = event.value;
+      console.log(this.formQuote.dateIn);
+    } else {
+      this.formQuote.dateIn = event.value;
+      console.log("hola",this.formQuote.dateOut);
+    }
+  }
+
+  getServices() {
+    this.ourServices
+      .getServices()
+      .subscribe((data: any) => (this.ourServices = data));
+  }
+
+  stellar() {
+    "use strict";
+    $(window).stellar({
+      responsive: true,
+      parallaxBackgrounds: true,
+      parallaxElements: true,
+      horizontalScrolling: false,
+      hideDistantElements: false,
+      scrollProperty: "scroll"
+    });
+  }
 
   // JQUERY carousel
   onCarousel() {
-    $('.home-slider').owlCarousel({
+    $(".home-slider").owlCarousel({
       loop: true,
       autoplay: true,
       margin: 0,
-      animateOut: 'fadeOut',
-      animateIn: 'fadeIn',
+      animateOut: "fadeOut",
+      animateIn: "fadeIn",
       nav: false,
       autoplayHoverPause: false,
       items: 1,
-      navText: ["<span class='ion-md-arrow-back'></span>", "<span class='ion-chevron-right'></span>"],
+      navText: [
+        "<span class='ion-md-arrow-back'></span>",
+        "<span class='ion-chevron-right'></span>"
+      ],
       responsive: {
         0: {
           items: 1
@@ -56,7 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         }
       }
     });
-    $('.carousel-testimony').owlCarousel({
+    $(".carousel-testimony").owlCarousel({
       autoplay: true,
       autoHeight: true,
       center: true,
@@ -66,7 +99,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       stagePadding: 0,
       nav: false,
       dots: true,
-      navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+      navText: [
+        '<span class="ion-ios-arrow-back">',
+        '<span class="ion-ios-arrow-forward">'
+      ],
       responsive: {
         0: {
           items: 1
@@ -81,26 +117,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-// magnific popup
-ViewPopup(){
-	$('.image-popup').magnificPopup({
-    type: 'image',
-    closeOnContentClick: true,
-    closeBtnInside: false,
-    fixedContentPos: true,
-    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-     gallery: {
-      enabled: true,
-      navigateByImgClick: true,
-      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-    },
-    image: {
-      verticalFit: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300 // don't foget to change the duration also in CSS
-    }
-  });
-}
+  // magnific popup
+  ViewPopup() {
+    $(".image-popup").magnificPopup({
+      type: "image",
+      closeOnContentClick: true,
+      closeBtnInside: false,
+      fixedContentPos: true,
+      mainClass: "mfp-no-margins mfp-with-zoom", // class to remove default margin from left and right side
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+        preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+      },
+      image: {
+        verticalFit: true
+      },
+      zoom: {
+        enabled: true,
+        duration: 300 // don't foget to change the duration also in CSS
+      }
+    });
+  }
 }
