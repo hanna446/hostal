@@ -62,11 +62,7 @@
                     <tr *ngFor="
                     let serv of servicesArray | keys;
                     let i = index">
-                      <td><img *ngIf="servicesArray[serv].img" 
-                        (click)="viewImage( servicesArray[serv].img )" 
-                        data-toggle="modal" data-target="#myModal" data-whatever="@mdo" 
-                        class="img-50 pointer" 
-                        src="{{servicesArray[serv].img}}"></td>
+                      <td><img *ngIf="servicesArray[serv].img" (click)="viewImage( servicesArray[serv].img )" data-toggle="modal" data-target="#myModal" data-whatever="@mdo" class="img-50 pointer" src="{{servicesArray[serv].img}}"></td>
                       <td>{{servicesArray[serv].name}}</td>
                       <td>{{servicesArray[serv].description}}</td>
                       <td>{{servicesArray[serv].hours}}</td>
@@ -123,13 +119,45 @@
               </div>
               <div class="item">
                 <!-- <form> -->
-                <div class="form-group">
+                    <div class="dropzone" 
+                    dropzone
+                    (hovered)="toggleHover($event)"
+                    (dropped)="onUpload($event)"
+                    [class.hovering]="isHovering">
+               
+               
+                    <h3>AngularFire Drop Zone</h3>
+                    <p>Drag and Drop a File</p>
+                    <div class="file">
+                       <label class="file-label">
+               
+               
+                       <input class="file-input" type="file" (change)="onUpload($event)">
+               
+               
+               
+               
+                         <span class="file-cta">
+                           <span class="file-icon">
+                             <i class="fa fa-upload"></i>
+                           </span>
+                           <span class="file-label">
+                             or choose a file…
+                           </span>
+                         </span>
+                       </label>
+                     </div>
+               </div>
+
+
+
+                <!-- <div class="form-group">
                   <label for="message-text" class="col-form-label">Image:</label>
                   <input type="file" (change)="onUpload($event)" name="image">
                 </div>
                 <div *ngIf="imgSrc" class="text-center">
                   <img class="w150" [src]="imgSrc">
-                </div>
+                </div> -->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save</button>

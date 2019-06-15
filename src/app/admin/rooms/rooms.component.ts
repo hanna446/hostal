@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class RoomsComponent implements OnInit {
   id: string;
   url;
+  imgSrc: any;
   public roomsArray: RoomsModel[] = [];
   public rom: RoomsModel = {
     number: 0,

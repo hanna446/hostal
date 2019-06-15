@@ -11,7 +11,6 @@ import {
 import { Observable } from "rxjs";
 
 
-
 @Component({
   selector: "app-our-services",
   templateUrl: "./our-services.component.html",
@@ -24,6 +23,8 @@ export class OurServicesComponent implements OnInit {
   task: AngularFireUploadTask;
   snapshot: Observable<any>;
   imgSrc: any;
+  isHovering: boolean;
+
   public servicesArray: ServicesModel[] = [];
   public serv: ServicesModel = {
     name: "",
@@ -46,6 +47,11 @@ export class OurServicesComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
 
   onUpload(e: any) {
     // recibe el evento para el archivo
