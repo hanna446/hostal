@@ -15,6 +15,7 @@ import { CategoryModels } from "../../models/category.models";
 })
 export class RoomsComponent implements OnInit {
   id: string;
+  url;
   public categoriesArray: CategoryModels[] = [];
   public roomsArray: RoomsModel[] = [];
   public rom: RoomsModel = {
@@ -101,6 +102,10 @@ export class RoomsComponent implements OnInit {
     );
   }
 
+  viewImage(img) {
+    this.url = img;
+  }
+  
   logout() {
     this.authService.logout();
   }

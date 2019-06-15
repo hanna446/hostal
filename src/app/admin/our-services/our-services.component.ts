@@ -1,15 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { OurServicesService } from "../../services/our-services.service";
 import { AuthService } from "../../services/auth.service";
-import { NgForm, FormGroup, FormControl, Validators } from "@angular/forms";
+import { NgForm, FormControl } from "@angular/forms";
 import swal from "sweetalert2";
 import { ServicesModel } from "../../models/our-services.models";
 import {
   AngularFireStorage,
   AngularFireUploadTask
 } from "@angular/fire/storage";
-import { finalize } from "rxjs/operators";
 import { Observable } from "rxjs";
+
+
 
 @Component({
   selector: "app-our-services",
@@ -19,7 +20,7 @@ import { Observable } from "rxjs";
 export class OurServicesComponent implements OnInit {
   id: string;
   imgFile: any;
-  url: any;
+  url;
   task: AngularFireUploadTask;
   snapshot: Observable<any>;
   imgSrc: any;
@@ -72,23 +73,22 @@ export class OurServicesComponent implements OnInit {
       const ref = this.storage.ref(fileName);
       this.task = this.storage.upload(fileName, this.imgFile);
 
-      this.snapshot = this.task.snapshotChanges().pipe(
-        finalize(async () => {
-          this.url = await ref.getDownloadURL().toPromise();
-        })
+      this.task.snapshotChanges().subscribe(
+        // The file's download URL
+        (async () => {
+          this.serv.img = await ref.getDownloadURL().toPromise();
+          this.ourServices.createService(this.serv).subscribe(
+            data => {
+              swal.fire("EXITO!", null, "success");
+              this.getService();
+            },
+            err => {
+              swal.fire("You have an error", null, "error");
+            }
+          );
+        }),
       );
 
-      console.log(this.url);
-
-      this.ourServices.createService(this.serv).subscribe(
-        data => {
-          swal.fire("EXITO!", null, "success");
-          this.getService();
-        },
-        err => {
-          swal.fire("You have an error", null, "error");
-        }
-      );
     } else {
       // actualiza
       this.ourServices.updateService(this.serv, this.id).subscribe(
@@ -128,5 +128,9 @@ export class OurServicesComponent implements OnInit {
         swal.fire("You have an error", null, "error");
       }
     );
+  }
+
+  viewImage(img) {
+    this.url = img;
   }
 }
