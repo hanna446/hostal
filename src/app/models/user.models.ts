@@ -2,7 +2,7 @@ export interface UserModel {
   name: string;
   email: string;
   office: string;
-  permissionState: number;
+  permissionState: false;
   uid: string;
   password?: string;
 }

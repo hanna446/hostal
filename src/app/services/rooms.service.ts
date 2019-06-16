@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RoomsModel } from '../models/rooms.models';
 import { URL_SERVICES } from '../config/config';
 import { map } from 'rxjs/operators';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json'
@@ -12,8 +13,14 @@ const headers = new HttpHeaders({
   providedIn: 'root'
 })
 export class RoomsService {
+  private dbPath = '/rooms';
+  roomsRef: AngularFireList<RoomsModel> = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private afDB: AngularFireDatabase) {
+    this.roomsRef = this.afDB.list(this.dbPath);
+  }
 
   createRoom(room: RoomsModel) {
     const body = JSON.stringify(room);
@@ -43,6 +50,10 @@ export class RoomsService {
         return resp;
       })
     );
+  }
+
+  getRoomsList() {
+    return this.roomsRef;
   }
 
   getRoom() {

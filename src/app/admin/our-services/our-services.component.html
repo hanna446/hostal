@@ -60,18 +60,20 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="
-                    let serv of servicesArray | keys;
-                    let i = index">
-                      <td><img *ngIf="servicesArray[serv].img" (click)="viewImage( servicesArray[serv].img )" data-toggle="modal" data-target="#myModal" data-whatever="@mdo" class="img-50 pointer" src="{{servicesArray[serv].img}}"></td>
-                      <td>{{servicesArray[serv].name}}</td>
-                      <td>{{servicesArray[serv].description}}</td>
-                      <td>{{servicesArray[serv].hours}}</td>
-                      <td>{{servicesArray[serv].price}}</td>
+                    let serv of servicesArray  ">
+                      <td><img *ngIf="serv.img" 
+                        (click)="viewImage( serv.img )" 
+                        data-toggle="modal" data-target="#myModal" data-whatever="@mdo" 
+                        class="img-50 pointer" src="{{serv.img}}"></td>
+                      <td>{{serv.name}}</td>
+                      <td>{{serv.description}}</td>
+                      <td>{{serv.hours}}</td>
+                      <td>{{serv.price}}</td>
                       <td>
-                        <p data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Edit"><button (click)="getUpdate(serv)" class="btn btn-edit btn-xs" data-target="#exampleModal"><span class="fa fa-pencil"></span></button></p>
+                        <p data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Edit"><button (click)="getUpdate(serv.key)" class="btn btn-edit btn-xs" data-target="#exampleModal"><span class="fa fa-pencil"></span></button></p>
                       </td>
                       <td>
-                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="delete(serv)" class="btn btn-delete btn-xs"><span class="fa fa-trash"></span></button></p>
+                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="delete(serv.key)" class="btn btn-delete btn-xs"><span class="fa fa-trash"></span></button></p>
                       </td>
                     </tr>
                   </tbody>
@@ -84,7 +86,7 @@
     </div>
   </div>
 </div>
-// modal normal
+<!-- modal normal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -119,45 +121,34 @@
               </div>
               <div class="item">
                 <!-- <form> -->
-                    <div class="dropzone" 
-                    dropzone
-                    (hovered)="toggleHover($event)"
-                    (dropped)="onUpload($event)"
-                    [class.hovering]="isHovering">
-               
-               
-                    <h3>AngularFire Drop Zone</h3>
-                    <p>Drag and Drop a File</p>
-                    <div class="file">
-                       <label class="file-label">
-               
-               
-                       <input class="file-input" type="file" (change)="onUpload($event)">
-               
-               
-               
-               
-                         <span class="file-cta">
-                           <span class="file-icon">
-                             <i class="fa fa-upload"></i>
-                           </span>
-                           <span class="file-label">
-                             or choose a file…
-                           </span>
-                         </span>
-                       </label>
-                     </div>
-               </div>
+                <div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+
+
+                  <h3>Drag and Drop a File</h3>
+                  <div class="file">
+                    <label class="file-label">
+
+
+                      <input class="file-input" type="file" (change)="onDrop($event.target.files)">
 
 
 
-                <!-- <div class="form-group">
-                  <label for="message-text" class="col-form-label">Image:</label>
-                  <input type="file" (change)="onUpload($event)" name="image">
+
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fa fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                          or choose a file…
+                        </span>
+                      </span>
+                    </label>
+                  </div>
                 </div>
-                <div *ngIf="imgSrc" class="text-center">
-                  <img class="w150" [src]="imgSrc">
-                </div> -->
+
+
+
+               
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save</button>
@@ -179,5 +170,5 @@
     </div>
   </div>
 </div>
-// modal component
+<!-- modal component -->
 <app-modals [img]="url"></app-modals>

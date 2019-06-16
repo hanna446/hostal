@@ -9,6 +9,7 @@ import {
   AngularFireUploadTask
 } from "@angular/fire/storage";
 import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -22,9 +23,8 @@ export class OurServicesComponent implements OnInit {
   url;
   task: AngularFireUploadTask;
   snapshot: Observable<any>;
-  imgSrc: any;
+  files: File[] = [];
   isHovering: boolean;
-
   public servicesArray: ServicesModel[] = [];
   public serv: ServicesModel = {
     name: "",
@@ -37,11 +37,10 @@ export class OurServicesComponent implements OnInit {
   constructor(
     private ourServices: OurServicesService,
     private authService: AuthService,
-    private storage: AngularFireStorage
-  ) { }
+    private storage: AngularFireStorage) { }
 
   ngOnInit() {
-    this.getService();
+    this.getServices();
   }
 
   logout() {
@@ -52,23 +51,14 @@ export class OurServicesComponent implements OnInit {
     this.isHovering = event;
   }
 
-
-  onUpload(e: any) {
-    // recibe el evento para el archivo
-    this.imgFile = e.target.files[0];
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-
-      reader.onload = (event: any) => {
-        this.imgSrc = event.target.result;
-      };
-
-      reader.readAsDataURL(e.target.files[0]);
+  onDrop(files: FileList) {
+    // recibe los archivos
+    for (let i = 0; i < files.length; i++) {
+      this.files.push(files.item(i));
     }
   }
 
   onSubmit(f: NgForm) {
-    console.log(f.valid);
     if (!f.valid) {
       return;
     }
@@ -77,7 +67,7 @@ export class OurServicesComponent implements OnInit {
       // guarda
       const fileName = `imgs/${new Date().valueOf().toString()}`;
       const ref = this.storage.ref(fileName);
-      this.task = this.storage.upload(fileName, this.imgFile);
+      this.task = this.storage.upload(fileName, this.files[0]);
 
       this.task.snapshotChanges().subscribe(
         // The file's download URL
@@ -86,7 +76,6 @@ export class OurServicesComponent implements OnInit {
           this.ourServices.createService(this.serv).subscribe(
             data => {
               swal.fire("EXITO!", null, "success");
-              this.getService();
             },
             err => {
               swal.fire("You have an error", null, "error");
@@ -100,7 +89,6 @@ export class OurServicesComponent implements OnInit {
       this.ourServices.updateService(this.serv, this.id).subscribe(
         data => {
           swal.fire("Update!", null, "success");
-          this.getService();
           this.id = "";
         },
         err => {
@@ -111,24 +99,31 @@ export class OurServicesComponent implements OnInit {
     }
   }
 
-  getService() {
-    this.ourServices
-      .getServices()
-      .subscribe((data: any) => (this.servicesArray = data));
+  getServices() {
+    /** Se escucha los cambios en la lista.
+     * obtiene la data del cambio
+     */
+
+    this.ourServices.getServicesList().snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
+          )
+        )
+      ).subscribe(data => this.servicesArray = data);
   }
 
-  getUpdate(serv) {
-    this.id = serv;
+  getUpdate(key) {
+    this.id = key;
     this.ourServices
       .getServiceById(this.id)
-      .subscribe((data: any) => (this.serv = data));
+      .subscribe((data: any) => this.serv = data);
   }
 
   delete(key: string) {
     this.ourServices.deleteService(key).subscribe(
       data => {
         swal.fire("exito!", null, "success");
-        this.getService();
       },
       err => {
         swal.fire("You have an error", null, "error");

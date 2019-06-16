@@ -45,17 +45,16 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="
-                    let cat of categoriesArray | keys;
-                    let i = index">
-                        <td>{{ categoriesArray[cat].name }}</td>
-                        <td>{{ categoriesArray[cat].description }}</td>
+                    let cat of categoriesArray ">
+                        <td>{{ cat.name }}</td>
+                        <td>{{ cat.description }}</td>
                         <td>
                           <p data-toggle="modal"
-                          data-target="#exampleModal" data-whatever="@mdo" data-placement="top" title="Edit"><button (click)="getUpdate(cat)"
+                          data-target="#exampleModal" data-whatever="@mdo" data-placement="top" title="Edit"><button (click)="getUpdate(cat.key)"
                               class="btn btn-edit btn-xs"><span class="fa fa-pencil"></span></button></p>
                         </td>
                         <td>
-                          <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="onDelete(cat)"
+                          <p data-placement="top" data-toggle="tooltip" title="Delete"><button (click)="onDelete(cat.key)"
                               class="btn btn-delete btn-xs"><span class="fa fa-trash"></span></button></p>
                         </td>
                       </tr>
@@ -70,6 +69,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
