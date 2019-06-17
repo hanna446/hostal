@@ -7,6 +7,8 @@ import { NgForm } from "@angular/forms";
 import swal from "sweetalert2";
 import { CategoriesService } from "../../services/categories.service";
 import { CategoryModels } from "../../models/category.models";
+import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-rooms",
@@ -14,9 +16,15 @@ import { CategoryModels } from "../../models/category.models";
   styleUrls: ["./rooms.component.css"]
 })
 export class RoomsComponent implements OnInit {
+  
+
   id: string;
   url;
   imgSrc: any;
+  imgFile: any;
+  task: AngularFireUploadTask;
+  snapshot: Observable<any>;
+
   public categoriesArray: CategoryModels[] = [];
   public roomsArray: RoomsModel[] = [];
   public rom: RoomsModel = {
@@ -32,7 +40,8 @@ export class RoomsComponent implements OnInit {
   constructor(
     private roomsService: RoomsService,
     private authService: AuthService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -52,17 +61,25 @@ export class RoomsComponent implements OnInit {
       return;
     }
 
-    if (!this.id) {
-      // guarda
-      this.roomsService.createRoom(this.rom).subscribe(
-        data => {
-          swal.fire("exito", null, "success");
-          this.getRooms();
-        },
-        err => {
-          swal.fire("You have an error", null, "error");
-        }
-      );
+    if (!this.id) {      
+      // guarda    
+      const fileName = `imgs/${new Date().valueOf().toString()}`;
+      const ref = this.storage.ref(fileName);
+      this.task = this.storage.upload(fileName, this.imgFile);
+      this.task.snapshotChanges().subscribe(//Escuchar a la variable Task (sube los archivos) y se suscribe
+        (async () => {
+          this.rom.img = await ref.getDownloadURL().toPromise();//se guarda la url en "img"
+          this.roomsService.createRoom(this.rom).subscribe(
+            data => {
+              swal.fire("exito", null, "success");
+              this.getRooms();
+            },
+            err => {
+              swal.fire("You have an error", null, "error");
+            }
+          );
+        })
+        );
     } else {
       // actualiza
       this.roomsService.updateRoom(this.rom, this.id).subscribe(

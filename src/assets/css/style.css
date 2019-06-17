@@ -260,7 +260,7 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-  width: 120px;
+  /* width: 120px;  */
 }
 
 button,
@@ -12587,7 +12587,7 @@ h5,
 }
 
 .search-property-1 .form-group .form-control {
-  padding: 0;
+  /* padding: 0; */
   padding-left: 20px;
   display: block;
   width: 100%;

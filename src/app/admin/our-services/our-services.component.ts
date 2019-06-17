@@ -16,7 +16,7 @@ import { Observable } from "rxjs";
   templateUrl: "./our-services.component.html",
   styleUrls: ["./our-services.component.css"]
 })
-export class OurServicesComponent implements OnInit {
+export class OurServicesComponent implements OnInit {  
   id: string;
   imgFile: any;
   url;
@@ -76,9 +76,8 @@ export class OurServicesComponent implements OnInit {
     if (!this.id) {
       // guarda
       const fileName = `imgs/${new Date().valueOf().toString()}`;
-      const ref = this.storage.ref(fileName);
-      this.task = this.storage.upload(fileName, this.imgFile);
-
+      const ref = this.storage.ref(fileName);       
+      this.task = this.storage.upload(fileName, this.imgFile);//Se guarda archivo en el storage
       this.task.snapshotChanges().subscribe(
         // The file's download URL
         (async () => {

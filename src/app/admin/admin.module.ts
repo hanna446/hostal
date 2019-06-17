@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from "@angular/forms";
 // import { KeyPipe } from '../pipes/key.pipe';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalsComponent } from '../components/modals/modals.component';
 
 
@@ -14,7 +15,7 @@ import { ModalsComponent } from '../components/modals/modals.component';
 @NgModule({
   declarations: [CategoriesComponent, OurServicesComponent, RoomsComponent, ModalsComponent],
   exports: [],
-  imports: [CommonModule, AppRoutingModule, SharedModule, FormsModule]
+  imports: [CommonModule, AppRoutingModule, SharedModule, FormsModule,NgbModule]
 })
 
 export class AdminModule { }
