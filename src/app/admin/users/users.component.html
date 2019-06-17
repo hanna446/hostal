@@ -1,0 +1,65 @@
+<app-nav-pages></app-nav-pages>
+
+<div class="page-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="sidebar content-box margin" style="display: block;">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"><i class="fa fa-bed"></i>Rooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-list"></i>Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login"><i class="fa fa-home"></i>Exit</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-10">
+        <div class="container">
+          <div class="content-box-large">
+            <div class="row">
+              <div class="panel-heading">
+                <div class="panel-title">Users Management</div>
+              </div>
+
+              <hr>
+              <div class="panel-body col-xs-12">
+                <div class="table-responsive col-xs-12">
+                  <table id="mytable" class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Office</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="
+                          let user of usersArray ">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.office }}</td>
+                        <td>
+
+                          <button class="btn btn-primary" *ngIf="user.permissionState" (click)="updateStatus(user['key'], false)">Inactive</button>
+                          <button class="btn btn-warning" *ngIf="!user.permissionState" (click)="updateStatus(user['key'], true)">Active</button>
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

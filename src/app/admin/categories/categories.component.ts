@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CategoriesService } from "../../services/categories.service";
 import { CategoryModels } from "../../models/category.models";
-import { NgForm, FormGroup,FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from "../../services/auth.service";
 import swal from "sweetalert2";
+import { map } from 'rxjs/operators';
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.component.html",
@@ -14,18 +15,15 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   id: string;
   forma: FormGroup;
   categoriesArray: CategoryModels[] = [];
-
   public cat: CategoryModels = {
     name: '',
-    description:''
+    description: ''
   };
 
   constructor(
     private categoriesService: CategoriesService,
     private authService: AuthService
-  ) { 
-
-  }
+  ) { }
 
   ngOnInit() {
     this.getCategories();
@@ -46,7 +44,6 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       // guarda
       this.categoriesService.createCategories(this.cat).subscribe(resp => {
         swal.fire('Exito', null, 'success');
-        this.getCategories();
       },
         err => {
           swal.fire('Ops error', null, 'error');
@@ -58,8 +55,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       this.categoriesService.updateCategories(this.cat, this.id).subscribe(
         data => {
           swal.fire("exito!", '', "success");
-          this.cat.name = '';
-          this.getCategories();
+          this.id = '';
         },
         err => {
           swal.fire("Oops error", '', "error");
@@ -69,16 +65,19 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   }
 
   getCategories() {
-    this.categoriesService.getCategories().subscribe((data: any) => {
-      this.categoriesArray = data;
-    });
+    this.categoriesService.getCategoriesList().snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
+          )
+        )
+      ).subscribe(data => this.categoriesArray = data);
   }
 
   onDelete(key: string) {
     this.categoriesService.deleteCategories(key).subscribe(
       resp => {
         swal.fire("It was successfully removed", '', "success");
-        this.getCategories();
       },
       err => {
         swal.fire("Ops error", null, "error");
@@ -89,7 +88,7 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   logout() {
     this.authService.logout();
   }
- 
+
   table() {
     $(document).ready(function () {
       $("#mytable #checkall").click(function () {
@@ -107,5 +106,5 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       // $("[data-toggle=tooltip]").tooltip();
     });
   }
-  
+
 }

@@ -4,6 +4,7 @@ import { CategoryModels } from "../models/category.models";
 import { URL_SERVICES } from "../config/config";
 
 import { map } from "rxjs/operators";
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 const headers = new HttpHeaders({
   "Content-Type": "application/json"
@@ -14,7 +15,14 @@ const headers = new HttpHeaders({
 })
 
 export class CategoriesService {
-  constructor(private http: HttpClient) { }
+  private dbPath = '/categories';
+  categoriesRef: AngularFireList<CategoryModels> = null;
+  constructor(
+    private http: HttpClient,
+    private afDB: AngularFireDatabase
+  ) {
+    this.categoriesRef = this.afDB.list(this.dbPath);
+  }
 
   createCategories(category: CategoryModels) {
     const body = JSON.stringify(category); // se convierte el dato puro a json
@@ -43,6 +51,10 @@ export class CategoriesService {
         return resp;
       })
     );
+  }
+
+  getCategoriesList() {
+    return this.categoriesRef;
   }
 
   getCategories() {

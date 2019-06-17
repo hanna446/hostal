@@ -38,7 +38,7 @@ export class AuthService {
           email: res.user.email,
           uid: res.user.uid,
           office: data.office,
-          permissionState: 0
+          permissionState: false
         };
 
         this.afDB

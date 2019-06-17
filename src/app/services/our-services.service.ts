@@ -3,6 +3,7 @@ import { map } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ServicesModel } from "../models/our-services.models";
 import { URL_SERVICES } from "../config/config";
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 const headers = new HttpHeaders({
   "Content-Type": "aplication/json"
@@ -12,7 +13,14 @@ const headers = new HttpHeaders({
   providedIn: "root"
 })
 export class OurServicesService {
-  constructor(private http: HttpClient) {}
+  private dbPath = '/services';
+  ourServicesRef: AngularFireList<ServicesModel> = null;
+
+  constructor(
+    private http: HttpClient,
+    private afDB: AngularFireDatabase) {
+    this.ourServicesRef = this.afDB.list(this.dbPath);
+  }
 
   createService(service: ServicesModel) {
     const url = URL_SERVICES + "services.json";
@@ -26,7 +34,7 @@ export class OurServicesService {
 
   deleteService(key: string) {
     let url = URL_SERVICES + `services/${key}.json`;
-    return this.http.delete(url, {headers}).pipe(
+    return this.http.delete(url, { headers }).pipe(
       map(resp => {
         return resp;
       })
@@ -36,11 +44,16 @@ export class OurServicesService {
   updateService(service: ServicesModel, key: string) {
     const body = JSON.stringify(service);
     let url = URL_SERVICES + `services/${key}.json`;
-    return this.http.put(url, body, {headers}).pipe(
+    return this.http.put(url, body, { headers }).pipe(
       map(resp => {
         return resp;
       })
     );
+  }
+
+  getServicesList() {
+    // devuelve toda la lista
+    return this.ourServicesRef;
   }
 
   getServices() {

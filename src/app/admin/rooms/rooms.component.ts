@@ -9,6 +9,7 @@ import { CategoriesService } from "../../services/categories.service";
 import { CategoryModels } from "../../models/category.models";
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: "app-rooms",
@@ -28,7 +29,7 @@ export class RoomsComponent implements OnInit {
   public categoriesArray: CategoryModels[] = [];
   public roomsArray: RoomsModel[] = [];
   public rom: RoomsModel = {
-    categoryId: "",
+    categoryName: '',
     number: 0,
     description: "",
     characteristics: "",
@@ -40,20 +41,25 @@ export class RoomsComponent implements OnInit {
   constructor(
     private roomsService: RoomsService,
     private authService: AuthService,
+<<<<<<< HEAD
     private categoriesService: CategoriesService,
     private storage: AngularFireStorage
   ) {}
+=======
+    private categoriesService: CategoriesService
+  ) { }
+>>>>>>> 620433233856ce4ff364da856ab3e82002987cc7
 
   ngOnInit() {
     this.getRooms();
     this.getCategories();
   }
 
-  getUpdate(rom) {
-    this.id = rom;
+  getUpdate(key) {
+    this.id = key;
     this.roomsService
       .getRoomById(this.id)
-      .subscribe((data: any) => (this.rom = data));
+      .subscribe((data: any) => this.rom = data);
   }
 
   onSubmit(f: NgForm) {
@@ -61,6 +67,7 @@ export class RoomsComponent implements OnInit {
       return;
     }
 
+<<<<<<< HEAD
     if (!this.id) {      
       // guarda    
       const fileName = `imgs/${new Date().valueOf().toString()}`;
@@ -80,12 +87,23 @@ export class RoomsComponent implements OnInit {
           );
         })
         );
+=======
+    if (!this.id) {
+      // guarda
+      this.roomsService.createRoom(this.rom).subscribe(
+        data => {
+          swal.fire("exito", null, "success");
+        },
+        err => {
+          swal.fire("You have an error", null, "error");
+        }
+      );
+>>>>>>> 620433233856ce4ff364da856ab3e82002987cc7
     } else {
       // actualiza
       this.roomsService.updateRoom(this.rom, this.id).subscribe(
         data => {
           swal.fire("Update!", null, "success");
-          this.getRooms();
           this.id = "";
         },
         err => {
@@ -97,22 +115,25 @@ export class RoomsComponent implements OnInit {
   }
 
   getRooms() {
-    this.roomsService
-      .getRoom()
-      .subscribe((data: any) => this.roomsArray = data);
+    this.roomsService.getRoomsList().snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ... c.payload.val()})
+          )
+        )
+      ).subscribe(data => this.roomsArray = data);
   }
 
   getCategories() {
     this.categoriesService
       .getCategories()
-      .subscribe((data: any) =>  this.categoriesArray = data);
+      .subscribe((data: any) => this.categoriesArray = data);
   }
 
   deleteRoom(key: string) {
     this.roomsService.deleteRoom(key).subscribe(
       data => {
         swal.fire("exito", null, "success");
-        this.getRooms();
       },
       err => {
         swal.fire("You have an error", null, "error");
@@ -123,7 +144,7 @@ export class RoomsComponent implements OnInit {
   viewImage(img) {
     this.url = img;
   }
-  
+
   logout() {
     this.authService.logout();
   }
