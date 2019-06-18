@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 import { AuthService } from "../../services/auth.service";
 import { RoomsService } from "../../services/rooms.service";
@@ -10,6 +10,7 @@ import { CategoryModels } from "../../models/category.models";
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-rooms",
@@ -18,6 +19,7 @@ import { map } from 'rxjs/operators';
 })
 export class RoomsComponent implements OnInit {
   
+  @ViewChild('carousel') carousel: any;
 
   id: string;
   url;
@@ -39,16 +41,12 @@ export class RoomsComponent implements OnInit {
   };
 
   constructor(
+    private config: NgbCarouselConfig,
     private roomsService: RoomsService,
     private authService: AuthService,
-<<<<<<< HEAD
-    private categoriesService: CategoriesService,
-    private storage: AngularFireStorage
-  ) {}
-=======
     private categoriesService: CategoriesService
-  ) { }
->>>>>>> 620433233856ce4ff364da856ab3e82002987cc7
+  ) {  config.interval = 1000;
+    config.keyboard = false; }
 
   ngOnInit() {
     this.getRooms();
@@ -67,27 +65,6 @@ export class RoomsComponent implements OnInit {
       return;
     }
 
-<<<<<<< HEAD
-    if (!this.id) {      
-      // guarda    
-      const fileName = `imgs/${new Date().valueOf().toString()}`;
-      const ref = this.storage.ref(fileName);
-      this.task = this.storage.upload(fileName, this.imgFile);
-      this.task.snapshotChanges().subscribe(//Escuchar a la variable Task (sube los archivos) y se suscribe
-        (async () => {
-          this.rom.img = await ref.getDownloadURL().toPromise();//se guarda la url en "img"
-          this.roomsService.createRoom(this.rom).subscribe(
-            data => {
-              swal.fire("exito", null, "success");
-              this.getRooms();
-            },
-            err => {
-              swal.fire("You have an error", null, "error");
-            }
-          );
-        })
-        );
-=======
     if (!this.id) {
       // guarda
       this.roomsService.createRoom(this.rom).subscribe(
@@ -98,7 +75,6 @@ export class RoomsComponent implements OnInit {
           swal.fire("You have an error", null, "error");
         }
       );
->>>>>>> 620433233856ce4ff364da856ab3e82002987cc7
     } else {
       // actualiza
       this.roomsService.updateRoom(this.rom, this.id).subscribe(

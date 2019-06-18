@@ -103,7 +103,7 @@ export class OurServicesComponent implements OnInit {
     /** Se escucha los cambios en la lista.
      * obtiene la data del cambio
      */
-
+ 
     this.ourServices.getServicesList().snapshotChanges()
       .pipe(
         map(changes =>
