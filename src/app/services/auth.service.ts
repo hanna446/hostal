@@ -63,10 +63,10 @@ export class AuthService {
   isAuth() {
     return this.afAauth.authState.pipe(
       map(fbUser => {
-        if (fbUser == null) {
-          this.router.navigate(["/login"]);
-          console.log(fbUser);
-        }
+        // if (fbUser == null) {
+        //   this.router.navigate(["/login"]);
+        //   console.log(fbUser);
+        // }
 
         return fbUser != null;
       })

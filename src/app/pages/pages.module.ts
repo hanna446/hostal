@@ -10,6 +10,9 @@ import { SingleComponent } from './single/single.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { ReservationComponent } from './reservation/reservation.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { SalonsComponent } from './salons/salons.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     HotelComponent,
     HotelSingleComponent,
-    SingleComponent
+    SingleComponent,
+    ReservationComponent,
+    RestaurantComponent,
+    SalonsComponent
   ],
 
   exports: [],
