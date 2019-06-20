@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { AuthService } from "../../services/auth.service";
 import { RoomsService } from "../../services/rooms.service";
@@ -10,7 +10,6 @@ import { CategoryModels } from "../../models/category.models";
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-rooms",
@@ -18,16 +17,14 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ["./rooms.component.css"]
 })
 export class RoomsComponent implements OnInit {
-  
-  @ViewChild('carousel') carousel: any;
-
   id: string;
   url;
   imgSrc: any;
   imgFile: any;
   task: AngularFireUploadTask;
   snapshot: Observable<any>;
-
+  isHovering: boolean;
+  files: File[] = [];
   public categoriesArray: CategoryModels[] = [];
   public roomsArray: RoomsModel[] = [];
   public rom: RoomsModel = {
@@ -41,12 +38,9 @@ export class RoomsComponent implements OnInit {
   };
 
   constructor(
-    private config: NgbCarouselConfig,
     private roomsService: RoomsService,
     private authService: AuthService,
-    private categoriesService: CategoriesService
-  ) {  config.interval = 1000;
-    config.keyboard = false; }
+    private categoriesService: CategoriesService) { }
 
   ngOnInit() {
     this.getRooms();
@@ -89,6 +83,20 @@ export class RoomsComponent implements OnInit {
       );
     }
   }
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+  onDrop(files: FileList) {
+    console.log(files);
+    
+    // recibe los archivos
+    for (let i = 0; i < files.length; i++) {
+      this.files.push(files.item(i));
+    }
+  }
+
 
   getRooms() {
     this.roomsService.getRoomsList().snapshotChanges()
