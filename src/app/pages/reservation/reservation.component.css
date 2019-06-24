@@ -1,0 +1,30 @@
+.register-left img {
+  margin-top: 15%;
+  margin-bottom: 5%;
+  width: 25%;
+  -webkit-animation: mover 2s infinite alternate;
+  animation: mover 1s infinite alternate;
+}
+.g {
+  margin-left: 300px;
+  top: 30px;
+  margin-bottom: 60px;
+  border-radius: 10px;
+}
+.t{
+  text-align: center !important;
+}
+.color{
+  background-color: #F8F9FA;  
+}
+.general{
+  width: 80% !important;
+  margin-left:55px;
+ 
+}
+.positio{
+  margin-left: 210px !important;
+  position: absolute;
+  top: 70px;
+  font-size: 16px;
+}

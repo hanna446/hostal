@@ -66,7 +66,20 @@ export class AuthService {
   isAuth() {
     return this.afAauth.authState.pipe(
       map(fbUser => {
-        if (fbUser.uid) {
+        if (fbUser == null) {
+          this.router.navigate(["/login"]);
+
+        }
+        return fbUser != null;
+      })
+    );
+  }
+
+  
+  userPermission() {
+    return this.afAauth.authState.pipe(
+      map(fbUser => {
+        if (fbUser) {
           this.uid.push(fbUser.uid);
 
         }
@@ -74,6 +87,7 @@ export class AuthService {
       })
     );
   }
+
 
 
 }

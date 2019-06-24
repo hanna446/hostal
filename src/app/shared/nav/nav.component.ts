@@ -18,14 +18,13 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService.isAuth().subscribe(data => this.isUser = data);
+    this.authService.userPermission().subscribe(data => this.isUser = data);
     this.isAuthStatus();
 
   }
 
 
   isAuthStatus() {
-
     this.userService.getUsersList().snapshotChanges()
       .pipe(
         map(changes =>

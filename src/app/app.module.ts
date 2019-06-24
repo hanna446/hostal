@@ -26,6 +26,7 @@ import { MaterialModule } from './material/material.module';
 import { DropzoneDirective } from './dropzone.directive';
 import { FormsModule } from "@angular/forms";
 
+
 // import { MaterialModule } from './material/material.module';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { FormsModule } from "@angular/forms";
     AngularFireDatabaseModule,    
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FormsModule  
+    FormsModule,
+    
   ],
   providers: [AngularFireDatabase],
   bootstrap: [AppComponent]

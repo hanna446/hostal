@@ -1,3 +1,4 @@
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -41,6 +42,10 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.break {
+  word-break:break-all;
 }
 
 article,
@@ -260,10 +265,6 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-<<<<<<< HEAD
-  /* width: 120px;  */
-=======
->>>>>>> 620433233856ce4ff364da856ab3e82002987cc7
 }
 
 button,
@@ -5369,7 +5370,7 @@ input[type="button"].btn-block {
 }
 
 .card-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; 
 }
 
 .card-subtitle {
@@ -11551,12 +11552,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5 {
+h5 {
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.9);
   font-weight: 400;
@@ -13254,7 +13250,7 @@ textarea.form-control {
 
 .ftco-footer p {
   color: rgba(255, 255, 255, 0.7);
-  padding: 10px;
+  padding: 5px;
 }
 
 .ftco-footer a {

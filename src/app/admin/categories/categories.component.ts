@@ -1,19 +1,19 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from "../../services/categories.service";
-import { CategoryModels } from "../../models/category.models";
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from "../../services/auth.service";
+import { NgForm } from '@angular/forms';
+import { CategoryModels } from "../../models/category.models";
 import swal from "sweetalert2";
 import { map } from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.component.html",
   styleUrls: ["./categories.component.css"]
 })
 
-export class CategoriesComponent implements OnInit, AfterViewInit {
-  id: string;
-  forma: FormGroup;
+export class CategoriesComponent implements OnInit {
+  id: string;  
   categoriesArray: CategoryModels[] = [];
   public cat: CategoryModels = {
     name: '',
@@ -22,16 +22,13 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private categoriesService: CategoriesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.getCategories();
-  }
-
-  ngAfterViewInit() {
-    this.table();
-  }
+  }  
 
   getUpdate(cat) {
     this.id = cat;
@@ -43,10 +40,10 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
     if (!this.id) {
       // guarda
       this.categoriesService.createCategories(this.cat).subscribe(resp => {
-        swal.fire('Exito', null, 'success');
+        this.toastr.success('Exito','exitos');
       },
         err => {
-          swal.fire('Ops error', null, 'error');
+          this.toastr.error('Oops!','You have an error');
         }
       );
 
@@ -54,11 +51,11 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       // actualiza
       this.categoriesService.updateCategories(this.cat, this.id).subscribe(
         data => {
-          swal.fire("exito!", '', "success");
+          this.toastr.success('Exito','exitos');
           this.id = '';
         },
         err => {
-          swal.fire("Oops error", '', "error");
+          this.toastr.error('Oops!','You have an error');
         }
       );
     }
@@ -77,34 +74,15 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
   onDelete(key: string) {
     this.categoriesService.deleteCategories(key).subscribe(
       resp => {
-        swal.fire("It was successfully removed", '', "success");
+        this.toastr.success('Exito','It was successfully removed');        
       },
       err => {
-        swal.fire("Ops error", null, "error");
+        this.toastr.error('Oops!','You have an error');
       }
     );
   }
 
   logout() {
     this.authService.logout();
-  }
-
-  table() {
-    $(document).ready(function () {
-      $("#mytable #checkall").click(function () {
-        if ($("#mytable #checkall").is(":checked")) {
-          $("#mytable input[type=checkbox]").each(function () {
-            $(this).prop("checked", true);
-          });
-        } else {
-          $("#mytable input[type=checkbox]").each(function () {
-            $(this).prop("checked", false);
-          });
-        }
-      });
-
-      // $("[data-toggle=tooltip]").tooltip();
-    });
-  }
-
+  } 
 }

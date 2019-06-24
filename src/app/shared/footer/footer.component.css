@@ -1,0 +1,19 @@
+
+.text {
+    color: #fff !important;
+     line-height: 1.5;  
+  font-weight: 400;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  margin: 0 !important;
+  padding: 10px;
+}
+
+.margin {
+margin: 0 !important;
+}
+
+.marginF {
+margin-top: 25px !important;
+margin-left: 500px;
+margin-right: 500px;
+}

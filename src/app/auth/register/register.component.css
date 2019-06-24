@@ -1,4 +1,14 @@
-.card-4 .card-body {
+/* .card-4 .card-body {
     padding: 57px 150px;
     padding-bottom: 65px;
+} */
+.btn-register{
+  background-color: #007BFF;  
+  border: 1px solid #007BFF ;
+  color: #fff ;
+  border-radius: 2px;  
+}
+
+.main-container{
+  margin-top: 20px;
 }

@@ -2,9 +2,10 @@
     ==========================================-->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
   <div class="container">
-    <a class="navbar-brand" routerLink="/home">Ecoland</a>
+    <a class="navbar-brand" routerLink="/home">Plaza Colombia      
+    </a>   
     <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span></span> Menu
+      <span class="fa fa-bars"></span> Menu
     </button>
 
     <div class="collapse navbar-collapse" id="ftco-nav">
@@ -30,9 +31,9 @@
         <li class="nav-item">
           <a href="#contact-section" class="nav-link"><span>Contact</span></a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="isUser">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-          <div class="dropdown-menu" *ngIf="isUser">
+          <div class="dropdown-menu">
             <a *ngIf="status" class="dropdown-item" routerLink="/admin/users">Users</a>
             <a class="dropdown-item" routerLink="/admin/categories">Categories</a>
             <a class="dropdown-item" routerLink="/admin/rooms">Rooms</a>

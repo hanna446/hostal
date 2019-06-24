@@ -11,7 +11,6 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { ReservationComponent } from './reservation/reservation.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
 import { SalonsComponent } from './salons/salons.component';
 
 @NgModule({
@@ -22,8 +21,7 @@ import { SalonsComponent } from './salons/salons.component';
     HotelComponent,
     HotelSingleComponent,
     SingleComponent,
-    ReservationComponent,
-    RestaurantComponent,
+    ReservationComponent,  
     SalonsComponent
   ],
 

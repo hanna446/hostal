@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { OurServicesService } from "../../services/our-services.service";
 import { AuthService } from "../../services/auth.service";
-import { NgForm, FormControl } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import swal from "sweetalert2";
 import { ServicesModel } from "../../models/our-services.models";
 import {

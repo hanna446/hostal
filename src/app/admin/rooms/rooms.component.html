@@ -1,5 +1,4 @@
-<app-nav></app-nav>
-
+<app-nav-pages></app-nav-pages>
 <div class="page-content">
   <div class="container">
     <div class="row">
@@ -46,16 +45,16 @@
             </div>
             <div class="panel-body">
               <div class="table-responsive">
-                <table id="mytable" class="table table-bordered table-striped table-responsive">
+                <table id="mytable" class="table table-bordered table-striped">
                   <thead>
-                    <tr>
+                    <tr >
                       <th>Image</th>
                       <th>Room number</th>
                       <th>Category</th>
                       <th>Description</th>
                       <th>Characteristics</th>
                       <th>AditionalInfo</th>
-                      <th>Price</th>
+                      <th style="width: 10px">Price</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -66,9 +65,9 @@
                       <td> <img *ngIf="rom.img" (click)="viewImage(rom.img)" class="pointer img-50" src="{{ room.img }}"> </td>
                       <td>{{ room.number }}</td>
                       <td>{{ room.categoryName }}</td>
-                      <td>{{ room.description }}</td>
-                      <td>{{ room.characteristics }}</td>
-                      <td>{{ room.aditionalInfo }}</td>
+                      <td class="break">{{ room.description }}</td>
+                      <td class="break">{{ room.characteristics }}</td>
+                      <td class="break">{{ room.aditionalInfo }}</td>
                       <td>{{ room.price }}</td>
                       <td>
                         <p data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="Edit"><button (click)="getUpdate(room.key)" class="btn btn-edit btn-xs"><span class="fa fa-pencil"></span></button></p>
