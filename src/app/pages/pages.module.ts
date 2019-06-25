@@ -4,7 +4,7 @@ import { AppRoutingModule } from "../app-routing.module";
 import { DestinationComponent } from "./destination/destination.component";
 import { DestinationSingleComponent } from "./destination-single/destination-single.component";
 import { HomeComponent } from "./home/home.component";
-import { HotelComponent } from "./hotel/hotel.component";
+import { RoomComponent } from "./room/room.component";
 import { HotelSingleComponent } from './hotel-single/hotel-single.component';
 import { SingleComponent } from './single/single.component';
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +18,7 @@ import { SalonsComponent } from './salons/salons.component';
     DestinationComponent,
     DestinationSingleComponent,
     HomeComponent,
-    HotelComponent,
+    RoomComponent,
     HotelSingleComponent,
     SingleComponent,
     ReservationComponent,  

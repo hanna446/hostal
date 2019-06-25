@@ -6,7 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 // pages
 import { LoginComponent } from "./auth/login/login.component";
 import { RegisterComponent } from "./auth/register/register.component";
-import { HotelComponent } from "./pages/hotel/hotel.component";
+import { RoomComponent } from "./pages/room/room.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { SingleComponent } from "./pages/single/single.component";
 import { DestinationComponent } from "./pages/destination/destination.component";
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: "destination", component: DestinationComponent },
   { path: "destination-single", component: DestinationSingleComponent },
   { path: "hotel-single", component: HotelSingleComponent },
-  { path: "hotel", component: HotelComponent },
+  { path: "rooms", component: RoomComponent },
   { path: "reservation", component: ReservationComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
