@@ -8,11 +8,11 @@ import { SharedModule } from "../shared/shared.module";
 import { FormsModule } from "@angular/forms";
 // import { KeyPipe } from '../pipes/key.pipe';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ModalsComponent } from "../components/modals/modals.component";
-import { UsersComponent } from "./users/users.component";
 import { MaterialModule } from "../material/material.module";
-import { RestaurantsComponent } from "./restaurants/restaurants.component";
-import {ToastrModule} from "ngx-toastr";
+import { ToastrModule } from "ngx-toastr";
+import { ModalsComponent } from '../components/modals/modals.component';
+import { UsersComponent } from './users/users.component';
+import { DropzoneDirective } from '../dropzone.directive';
 
 
 
@@ -23,7 +23,7 @@ import {ToastrModule} from "ngx-toastr";
     RoomsComponent,
     ModalsComponent,
     UsersComponent,
-    RestaurantsComponent
+    DropzoneDirective
   ],
   exports: [],
   imports: [
@@ -33,10 +33,10 @@ import {ToastrModule} from "ngx-toastr";
     FormsModule,
     MaterialModule,
     ToastrModule.forRoot({
-      timeOut:1000,
-      positionClass:'toast-top-right',
+      timeOut: 1000,
+      positionClass: 'toast-top-right',
       preventDuplicates: false
     })
   ]
 })
-export class AdminModule {}
+export class AdminModule { }

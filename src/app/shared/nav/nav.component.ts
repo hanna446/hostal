@@ -37,6 +37,7 @@ export class NavComponent implements OnInit {
           this.authService.uid.forEach(uid => {
             if (user.uid === uid) {
               this.isUser = true;
+
               this.status = user.permissionState;
             }
           });

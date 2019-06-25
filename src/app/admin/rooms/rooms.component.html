@@ -62,7 +62,11 @@
                   <tbody>
                     <tr *ngFor="
                     let room of roomsArray ">
-                      <td> <img *ngIf="rom.img" (click)="viewImage(rom.img)" class="pointer img-50" src="{{ room.img }}"> </td>
+                      <td> <img *ngIf="room.img"
+                         (click)="viewImage(room.img)" 
+                         data-toggle="modal" data-target="#myModal" data-whatever="@mdo" 
+                         class="pointer img-50" 
+                         src="{{ room.img }}"> </td>
                       <td>{{ room.number }}</td>
                       <td>{{ room.categoryName }}</td>
                       <td class="break">{{ room.description }}</td>
@@ -134,7 +138,7 @@
               <div class="carousel-item">
 
                 <div class="dropzone" 
-                    dropzone
+                    appDropzone
                     (hovered)="toggleHover($event)" 
                     (dropped)="onDrop($event)" 
                     [class.hovering]="isHovering">

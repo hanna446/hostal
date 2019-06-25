@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
   templateUrl: "./our-services.component.html",
   styleUrls: ["./our-services.component.css"]
 })
-export class OurServicesComponent implements OnInit {  
+export class OurServicesComponent implements OnInit {
   id: string;
   imgFile: any;
   url;

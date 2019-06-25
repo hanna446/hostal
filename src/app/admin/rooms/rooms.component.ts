@@ -39,6 +39,7 @@ export class RoomsComponent implements OnInit {
 
   constructor(
     private roomsService: RoomsService,
+    private storage: AngularFireStorage,
     private authService: AuthService,
     private categoriesService: CategoriesService) { }
 
@@ -61,14 +62,31 @@ export class RoomsComponent implements OnInit {
 
     if (!this.id) {
       // guarda
-      this.roomsService.createRoom(this.rom).subscribe(
-        data => {
-          swal.fire("exito", null, "success");
-        },
-        err => {
-          swal.fire("You have an error", null, "error");
-        }
+      const fileName = `imgs/${new Date().valueOf().toString()}`;
+      const ref = this.storage.ref(fileName);
+      for (const file of this.files) {
+        console.log(file);
+
+        this.task = this.storage.upload(fileName, file);
+      }
+
+      this.task.snapshotChanges().subscribe(
+        // The file's download URL
+        (async () => {
+          this.rom.img = await ref.getDownloadURL().toPromise();
+          this.roomsService.createRoom(this.rom).subscribe(
+            data => {
+              swal.fire("exito", null, "success");
+            },
+            err => {
+              swal.fire("You have an error", null, "error");
+            }
+          );
+
+
+        }),
       );
+
     } else {
       // actualiza
       this.roomsService.updateRoom(this.rom, this.id).subscribe(
@@ -89,8 +107,6 @@ export class RoomsComponent implements OnInit {
   }
 
   onDrop(files: FileList) {
-    console.log(files);
-    
     // recibe los archivos
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
@@ -102,7 +118,7 @@ export class RoomsComponent implements OnInit {
     this.roomsService.getRoomsList().snapshotChanges()
       .pipe(
         map(changes =>
-          changes.map(c => ({ key: c.payload.key, ... c.payload.val()})
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
           )
         )
       ).subscribe(data => this.roomsArray = data);

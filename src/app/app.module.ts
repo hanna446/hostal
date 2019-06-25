@@ -30,7 +30,7 @@ import { FormsModule } from "@angular/forms";
 // import { MaterialModule } from './material/material.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, DropzoneDirective],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,7 +42,7 @@ import { FormsModule } from "@angular/forms";
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule,    
+    AngularFireDatabaseModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
