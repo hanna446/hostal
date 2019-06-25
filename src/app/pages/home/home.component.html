@@ -140,7 +140,7 @@
                   <label for="#">Check-in date</label>
                   <div class=" form-control form-field">               
                     <input style="width: 180px" name= "dateIn" (dateChange)="addEvent('changeIn', $event)" [(ngModel)]="formQuote.dateIn"
-                      type="text" class="checkout_date" matInput [matDatepicker]="picker"
+                      type="text" class=" responsive checkout_date" matInput [matDatepicker]="picker"
                       placeholder="Choose a date" disabled>
                     <mat-datepicker-toggle matSuffix [for]="picker">
                       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -191,76 +191,104 @@
 <!-- form-END -->
 
 <!-- our services -->
-<section class="ftco-section ftco-services-2" id="services-section">
+<section class="ftco-section" id="restaurant-section">
   <div class="container">
     <div class="row justify-content-center pb-5">
       <div class="col-md-12 heading-section text-center ">
-        <span class="subheading">Sexy &amp; Healthy</span>
-        <h2 class="mb-4">Our Services</h2>
+        <span class="subheading">Services</span>
+        <h2 class="mb-4">Amazing services</h2>
         <p>
           Far far away, behind the word mountains, far from the countries
           Vokalia and Consonantia
         </p>
       </div>
     </div>
+    <!-- restaurant -->
     <div class="row">
-      <div class="col-md d-flex align-self-stretch ">
-        <div *ngFor="let serv of servicesArray | keys; let i = index" class="media block-6 services text-center d-block">
-          <div class="icon justify-content-center align-items-center d-flex">
-            <span class="flaticon-gliding"></span>
+      <div class="col-md-6 col-lg-4 ">
+        <div class="project">
+          <div class="img">
+            <img src="assets/images/resto-1.jpg" class="img-fluid" alt="Colorlib Template" />
           </div>
-          <div  class="media-body">
-            <h3 class="heading mb-3">{{servicesArray[serv].name}}</h3>
-            <p>
-              {{servicesArray[serv].description}}
-            </p>
+          <div class="text">
+            <h4 class="price"><span class="mr-2">menu start at</span>$4.00</h4>
+            
+            <h3><a href="project.html">Resto Bar, Swetzerland</a></h3>
+            <div class="star d-flex clearfix">
+              <div class="mr-auto float-left">
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+              </div>
+              <div class="float-right">
+                <span class="rate"><a href="#">(120)</a></span>
+              </div>
+            </div>
           </div>
+          <a href="assets/images/resto-1.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            <span class="icon-expand"></span>
+          </a>
         </div>
       </div>
-      <div class="col-md d-flex align-self-stretch ">
-        <div class="media block-6 services text-center d-block">
-          <div class="icon justify-content-center align-items-center d-flex">
-            <span class="flaticon-world"></span>
+      <div class="col-md-6 col-lg-4 ">
+        <div class="project">
+          <div class="img">
+            <img src="assets/images/resto-2.jpg" class="img-fluid" alt="Colorlib Template" />
           </div>
-          <div class="media-body">
-            <h3 class="heading mb-3">Restaurants</h3>
-            <p>
-              A small river named Duden flows by their place and supplies it
-              with the necessary regelialia.
-            </p>
+          <div class="text">
+            <h4 class="price"><span class="mr-2">menu start at</span>$4.00</h4>
+            
+            <h3><a href="project.html">Resto Bar, Swetzerland</a></h3>
+            <div class="star d-flex clearfix">
+              <div class="mr-auto float-left">
+                <span cl7ass="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+              </div>
+              <div class="float-right">
+                <span class="rate"><a href="#">(120)</a></span>
+              </div>
+            </div>
           </div>
+          <a href="assets/images/resto-2.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            <span class="icon-expand"></span>
+          </a>
         </div>
       </div>
-      <div class="col-md d-flex align-self-stretch ">
-        <div class="media block-6 services text-center d-block">
-          <div class="icon justify-content-center align-items-center d-flex">
-            <span class="flaticon-tour-guide"></span>
+      <div class="col-md-6 col-lg-4 ">
+        <div class="project">
+          <div class="img">
+            <img src="assets/images/resto-3.jpg" class="img-fluid" alt="Colorlib Template" />
           </div>
-          <div class="media-body">
-            <h3 class="heading mb-3">Events room</h3>
-            <p>
-              A small river named Duden flows by their place and supplies it
-              with the necessary regelialia.
-            </p>
+          <div class="text">
+            <h4 class="price"><span class="mr-2">menu start at</span>$4.00</h4>
+            
+            <h3><a href="project.html">Resto Bar, Swetzerland</a></h3>
+            <div class="star d-flex clearfix">
+              <div class="mr-auto float-left">
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+                <span class="ion-ios-star"></span>
+              </div>
+              <div class="float-right">
+                <span class="rate"><a href="#">(120)</a></span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md d-flex align-self-stretch ">
-        <div class="media block-6 services text-center d-block">
-          <div class="icon justify-content-center align-items-center d-flex">
-            <span class="flaticon-map-of-roads"></span>
-          </div>
-          <div class="media-body">
-            <h3 class="heading mb-3">SPA</h3>
-            <p>
-              A small river named Duden flows by their place and supplies it
-              with the necessary regelialia.
-            </p>
-          </div>
+          <a href="assets/images/resto-3.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            <span class="icon-expand"></span>
+          </a>
         </div>
       </div>
     </div>
   </div>
+  <!-- restaurant_END -->
 </section>
 <!-- our services_END -->
 
@@ -631,80 +659,8 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center pb-5 pt-5">
-      <div class="col-md-12 heading-section text-center ">
-        <span class="subheading">Rooms &amp; Suites</span>
-        <h2 class="mb-4">Greece Best Rooms Offer</h2>
-        <p>
-          Far far away, behind the word mountains, far from the countries
-          Vokalia and Consonantia
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 room-wrap">
-        <div class="row">
-          <div class="col-md-7 d-flex ">
-            <div class="img align-self-stretch" style="background-image: url(assets/images/room-1.jpg);"></div>
-          </div>
-          <div class="col-md-5 ">
-            <div class="text py-5">
-              <h3><a routerLink="/hotel-single">Classic Balcony Room</a></h3>
-              <p class="pos">from <span class="price">$99.00</span>/night</p>
-              <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts. Separated
-                they live in Bookmarksgrove right at the coast of the Semantics,
-                a large language ocean. A small river named Duden flows by their
-                place and supplies it with the necessary regelialia. It is a
-                paradisematic country, in which roasted parts of sentences fly
-                into your mouth.
-              </p>
-              <p>
-                <a href="#" class="btn btn-secondary">Details</a>
-                <a href="#" class="btn btn-primary">Book now</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12 room-wrap room-wrap-thumb mt-4">
-        <div class="row">
-          <div class="col-md-3 ">
-            <a href="#" class="d-flex thumb">
-              <div class="img align-self-stretch" style="background-image: url(assets/images/room-1.jpg);"></div>
-              <div class="text pl-3 py-3">
-                <h3>Classic Balcony Room</h3>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 ">
-            <a href="#" class="d-flex thumb">
-              <div class="img align-self-stretch" style="background-image: url(assets/images/room-2.jpg);"></div>
-              <div class="text pl-3 py-3">
-                <h3>Classic Balcony Room</h3>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 ">
-            <a href="#" class="d-flex thumb">
-              <div class="img align-self-stretch" style="background-image: url(assets/images/room-3.jpg);"></div>
-              <div class="text pl-3 py-3">
-                <h3>Classic Balcony Room</h3>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3 ">
-            <a href="#" class="d-flex thumb">
-              <div class="img align-self-stretch" style="background-image: url(assets/images/room-4.jpg);"></div>
-              <div class="text pl-3 py-3">
-                <h3>Classic Balcony Room</h3>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+   
+   
   </div>
 </section>
 

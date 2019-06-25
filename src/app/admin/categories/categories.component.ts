@@ -40,7 +40,7 @@ export class CategoriesComponent implements OnInit {
     if (!this.id) {
       // guarda
       this.categoriesService.createCategories(this.cat).subscribe(resp => {
-        this.toastr.success('Exito','exitos');
+        this.toastr.success('Exito','Categoría creada con éxito');
       },
         err => {
           this.toastr.error('Oops!','You have an error');
@@ -51,7 +51,7 @@ export class CategoriesComponent implements OnInit {
       // actualiza
       this.categoriesService.updateCategories(this.cat, this.id).subscribe(
         data => {
-          this.toastr.success('Exito','exitos');
+          this.toastr.success('Exito','Categoría actualizada con éxito');
           this.id = '';
         },
         err => {
@@ -74,7 +74,7 @@ export class CategoriesComponent implements OnInit {
   onDelete(key: string) {
     this.categoriesService.deleteCategories(key).subscribe(
       resp => {
-        this.toastr.success('Exito','It was successfully removed');        
+        this.toastr.success('Exito','It was successfully removed');
       },
       err => {
         this.toastr.error('Oops!','You have an error');

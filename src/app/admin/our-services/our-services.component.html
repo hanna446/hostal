@@ -3,38 +3,33 @@
 <div class="page-content">
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class=" sizeP col-md-2">
         <div class="sidebar content-box margin" style="display: block;">
-          <ul class="nav">
-            <!-- Main menu -->
-            <li>
-              <a routerLink="/admin/rooms"><i class="fa fa-bed"></i>Rooms</a>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" routerLink="/admin/rooms"><i class="fa fa-bed"></i>Rooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin/categories"><i class="fa fa-list"></i>Categories</a>
             </li>
             <li>
-              <a routerLink="/admin/categories"><i class="fa fa-list"></i>Categories</a>
+              <a class="nav-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample"><i class="fas fa-concierge-bell"></i>Services</a>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <a class="nav-link" routerLink="/admin/restaurant"><i class="fa fa-f2bb"></i>Restaurants</a>
+                  <a class="nav-link" routerLink="/admin/our-services"><i class="fa fa-layer-group"></i>General</a>
+                </div>
+              </div>
             </li>
-
-            <li class="submenu">
-              <a routerLink="/">
-                <i class="fa fa-concierge-bell"></i> Services
-                <span class="caret pull-right"></span>
-              </a>
-              <!-- Sub menu -->
-              <ul>
-                <li><a href="login.html">Restaurant</a><i class="fa fa-utensils"></i></li>
-                <li><a href="signup.html">Salons</a><i class="fa fa-glass-cheers"></i></li>
-                <li><a routerLink="admin/our-services">Others</a><i class="fa fa-layer-group"></i></li>
-              </ul>
-              <!-- Sub menu end-->
-            </li>
-            <li>
-              <a (click)="logout()"><i class="fa fa-home"></i>Exit</a>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()"><i class="fa fa-home"></i>Exit</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div class="col-md-10">
+      <div class=" sizeP col-md-10">
         <div class="container">
           <div class="content-box-large">
             <div class="panel-heading">

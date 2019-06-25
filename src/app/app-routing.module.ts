@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: "destination-single", component: DestinationSingleComponent },
   { path: "hotel-single", component: HotelSingleComponent },
   { path: "hotel", component: HotelComponent },
-  { path: "reservation", component: ReservationComponent},
+  { path: "reservation", component: ReservationComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "admin/users", component: UsersComponent },

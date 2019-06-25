@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getServices() {
     this.ourServices
       .getServices()
-      .subscribe((data: any) => (this.servicesArray = data));
+      .subscribe((data: any) => (this.servicesArray = data));                  
   }
 
   stellar() {

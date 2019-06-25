@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { OurServicesService } from "../../services/our-services.service";
 import { AuthService } from "../../services/auth.service";
 import { NgForm } from "@angular/forms";
-import swal from "sweetalert2";
 import { ServicesModel } from "../../models/our-services.models";
 import {
   AngularFireStorage,
@@ -10,7 +9,7 @@ import {
 } from "@angular/fire/storage";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
-
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: "app-our-services",
@@ -37,7 +36,9 @@ export class OurServicesComponent implements OnInit {
   constructor(
     private ourServices: OurServicesService,
     private authService: AuthService,
-    private storage: AngularFireStorage) { }
+    private storage: AngularFireStorage,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit() {
     this.getServices();
@@ -75,10 +76,10 @@ export class OurServicesComponent implements OnInit {
           this.serv.img = await ref.getDownloadURL().toPromise();
           this.ourServices.createService(this.serv).subscribe(
             data => {
-              swal.fire("EXITO!", null, "success");
+             this.toastr.success('Exito!','El servicio ha sido creado con exito ');
             },
             err => {
-              swal.fire("You have an error", null, "error");
+              this.toastr.error('Oops','You have an error');
             }
           );
         }),
@@ -88,11 +89,11 @@ export class OurServicesComponent implements OnInit {
       // actualiza
       this.ourServices.updateService(this.serv, this.id).subscribe(
         data => {
-          swal.fire("Update!", null, "success");
+          this.toastr.success('Exito!','El servicio ha sido actualizado con exito ')
           this.id = "";
         },
         err => {
-          swal.fire("You have an error", null, "error");
+          this.toastr.error('Oops','You have an error');
           this.id = "";
         }
       );
@@ -123,10 +124,10 @@ export class OurServicesComponent implements OnInit {
   delete(key: string) {
     this.ourServices.deleteService(key).subscribe(
       data => {
-        swal.fire("exito!", null, "success");
+        this.toastr.success('Exito!','El servicio ha sido eliminado con exito ');
       },
       err => {
-        swal.fire("You have an error", null, "error");
+        this.toastr.error('Oops','You have an error');
       }
     );
   }

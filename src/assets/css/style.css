@@ -1275,6 +1275,11 @@ pre code {
     max-width: 83.33333%;
   }
 
+  .sizeP {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
   .col-md-11 {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 91.66667%;
@@ -2253,6 +2258,7 @@ pre code {
 }
 
 .table-responsive {
+  padding-bottom: 40px;
   display: block;
   width: 100%;
   overflow-x: auto;

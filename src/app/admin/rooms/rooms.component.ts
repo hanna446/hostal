@@ -10,6 +10,7 @@ import { CategoryModels } from "../../models/category.models";
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-rooms",
@@ -41,7 +42,9 @@ export class RoomsComponent implements OnInit {
     private roomsService: RoomsService,
     private storage: AngularFireStorage,
     private authService: AuthService,
-    private categoriesService: CategoriesService) { }
+    private categoriesService: CategoriesService,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit() {
     this.getRooms();
@@ -62,42 +65,24 @@ export class RoomsComponent implements OnInit {
 
     if (!this.id) {
       // guarda
-      const fileName = `imgs/${new Date().valueOf().toString()}`;
-      const ref = this.storage.ref(fileName);
-
-      // this.files.forEach(file => {
-
-      this.task = this.storage.upload(fileName, this.files[0]);
-      //   console.log(this.task);
-      // });
-
-
-      this.task.snapshotChanges().subscribe(
-        // The file's download URL
-        (async () => {
-          this.rom.img.push(await ref.getDownloadURL().toPromise());
-          this.roomsService.createRoom(this.rom).subscribe(
-            data => {
-              swal.fire("exito", null, "success");
-            },
-            err => {
-              swal.fire("You have an error", null, "error");
-            }
-          );
-
-
-        }),
+      this.roomsService.createRoom(this.rom).subscribe(
+        data => {
+         this.toastr.success('Exito!','La habitación ha sido creada con exito');
+        },
+        err => {
+          this.toastr.error('Oops!','You have an error');
+        }
       );
 
     } else {
       // actualiza
       this.roomsService.updateRoom(this.rom, this.id).subscribe(
         data => {
-          swal.fire("Update!", null, "success");
+          this.toastr.success('Exito!','La habitación ha sido actualizada con exito');
           this.id = "";
         },
         err => {
-          swal.fire("You have an error", null, "error");
+          this.toastr.error('Oops!','You have an error');
           this.id = "";
         }
       );
@@ -135,10 +120,10 @@ export class RoomsComponent implements OnInit {
   deleteRoom(key: string) {
     this.roomsService.deleteRoom(key).subscribe(
       data => {
-        swal.fire("exito", null, "success");
+        this.toastr.success('Exito!','La habitación ha sido eliminada con exito');
       },
       err => {
-        swal.fire("You have an error", null, "error");
+        this.toastr.error('Oops!','You have an error');
       }
     );
   }

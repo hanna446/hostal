@@ -1,3 +1,9 @@
+@media only screen and (min-width: 809px) {
+  .responsive {
+    width: 700px !important;
+  }
+}
+
 .register-left img {
   margin-top: 15%;
   margin-bottom: 5%;
