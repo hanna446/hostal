@@ -3,6 +3,6 @@ export interface ServicesModel {
   description: string;
   hours: string;
   price: string;
-  img: any;
+  img: any[];
   key?: string;
 }

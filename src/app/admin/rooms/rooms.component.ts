@@ -34,7 +34,7 @@ export class RoomsComponent implements OnInit {
     characteristics: "",
     aditionalInfo: "",
     price: 0,
-    img: ""
+    img: []
   };
 
   constructor(
@@ -64,16 +64,18 @@ export class RoomsComponent implements OnInit {
       // guarda
       const fileName = `imgs/${new Date().valueOf().toString()}`;
       const ref = this.storage.ref(fileName);
-      for (const file of this.files) {
-        console.log(file);
 
-        this.task = this.storage.upload(fileName, file);
-      }
+      // this.files.forEach(file => {
+
+      this.task = this.storage.upload(fileName, this.files[0]);
+      //   console.log(this.task);
+      // });
+
 
       this.task.snapshotChanges().subscribe(
         // The file's download URL
         (async () => {
-          this.rom.img = await ref.getDownloadURL().toPromise();
+          this.rom.img.push(await ref.getDownloadURL().toPromise());
           this.roomsService.createRoom(this.rom).subscribe(
             data => {
               swal.fire("exito", null, "success");

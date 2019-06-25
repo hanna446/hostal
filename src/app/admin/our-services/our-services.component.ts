@@ -31,7 +31,7 @@ export class OurServicesComponent implements OnInit {
     description: "",
     hours: "",
     price: "",
-    img: ""
+    img: []
   };
 
   constructor(
