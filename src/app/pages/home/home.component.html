@@ -210,7 +210,7 @@
             <img src="{{servicesArray[serv].img}}" class=" size img-fluid" alt="" />
           </div>
           <div class="text">
-            <h4 class="price"><span class="mr-2">Service start at</span>{{servicesArray[serv].price}}</h4>
+            <h4 class="price"><span class="mr-2">Service start at</span>{{servicesArray[serv].price | currency }}</h4>
             <h3><a href="project.html">{{servicesArray[serv].name}}</a></h3>
             <span>{{servicesArray[serv].description}}</span>
             <div class="star d-flex clearfix">
@@ -733,7 +733,7 @@
             <img src="{{restaurantArray[rest].img}}" class=" size img-fluid" alt="" />
           </div>
           <div class="text">
-            <h4 class="price"><span class="mr-2">Menu start at</span>{{restaurantArray[rest].price}}</h4>
+            <h4 class="price"><span class="mr-2">Menu start at</span>{{restaurantArray[rest].price | currency}}</h4>
             <h3><a href="project.html">{{restaurantArray[rest].name}}</a></h3>
             <span>{{restaurantArray[rest].description}}</span>
             <div class="star d-flex clearfix">
