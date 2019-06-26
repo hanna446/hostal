@@ -3,9 +3,8 @@ import { CategoriesService } from "../../services/categories.service";
 import { AuthService } from "../../services/auth.service";
 import { NgForm } from '@angular/forms';
 import { CategoryModels } from "../../models/category.models";
-import swal from "sweetalert2";
 import { map } from 'rxjs/operators';
-import {ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: "app-categories",
   templateUrl: "./categories.component.html",
@@ -13,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 
 export class CategoriesComponent implements OnInit {
-  id: string;  
+  id: string;
   categoriesArray: CategoryModels[] = [];
   public cat: CategoryModels = {
     name: '',
@@ -28,7 +27,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
-  }  
+  }
 
   getUpdate(cat) {
     this.id = cat;
@@ -37,13 +36,20 @@ export class CategoriesComponent implements OnInit {
   }
 
   async onSubmit(f: NgForm) {
+    if (!f.valid) {
+       // validated
+      this.toastr.info('Warning!', 'please fill in the missing fields');
+      return;
+    }
+
     if (!this.id) {
       // guarda
       this.categoriesService.createCategories(this.cat).subscribe(resp => {
-        this.toastr.success('Exito','Categoría creada con éxito');
+        this.toastr.success('Success', 'Successfully created category');
+        f.onReset();
       },
         err => {
-          this.toastr.error('Oops!','You have an error');
+          this.toastr.error('Oops!', 'You have an error');
         }
       );
 
@@ -51,11 +57,13 @@ export class CategoriesComponent implements OnInit {
       // actualiza
       this.categoriesService.updateCategories(this.cat, this.id).subscribe(
         data => {
-          this.toastr.success('Exito','Categoría actualizada con éxito');
+          this.toastr.success('Success', 'Successfully created category');
           this.id = '';
+          f.onReset();
         },
         err => {
-          this.toastr.error('Oops!','You have an error');
+          this.toastr.error('Oops!', 'You have an error');
+
         }
       );
     }
@@ -74,15 +82,15 @@ export class CategoriesComponent implements OnInit {
   onDelete(key: string) {
     this.categoriesService.deleteCategories(key).subscribe(
       resp => {
-        this.toastr.success('Exito','It was successfully removed');
+        this.toastr.success('Success', 'It was successfully removed');
       },
       err => {
-        this.toastr.error('Oops!','You have an error');
+        this.toastr.error('Oops!', 'You have an error');
       }
     );
   }
 
   logout() {
     this.authService.logout();
-  } 
+  }
 }

@@ -9,7 +9,7 @@ import {
 } from "@angular/fire/storage";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
-import {ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-our-services",
@@ -38,7 +38,7 @@ export class OurServicesComponent implements OnInit {
     private authService: AuthService,
     private storage: AngularFireStorage,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getServices();
@@ -61,6 +61,8 @@ export class OurServicesComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     if (!f.valid) {
+      // validated
+      this.toastr.info('Warning!', 'please fill in the missing fields');
       return;
     }
 
@@ -76,10 +78,11 @@ export class OurServicesComponent implements OnInit {
           this.serv.img = await ref.getDownloadURL().toPromise();
           this.ourServices.createService(this.serv).subscribe(
             data => {
-             this.toastr.success('Exito!','El servicio ha sido creado con exito ');
+              this.toastr.success('Success!', 'The service has been created successfully. ');
+              f.onReset();
             },
             err => {
-              this.toastr.error('Oops','You have an error');
+              this.toastr.error('Oops', 'You have an error');
             }
           );
         }),
@@ -89,11 +92,12 @@ export class OurServicesComponent implements OnInit {
       // actualiza
       this.ourServices.updateService(this.serv, this.id).subscribe(
         data => {
-          this.toastr.success('Exito!','El servicio ha sido actualizado con exito ')
+          this.toastr.success('Success!', 'The service has been successfully updated. ');
           this.id = "";
+          f.onReset();
         },
         err => {
-          this.toastr.error('Oops','You have an error');
+          this.toastr.error('Oops', 'You have an error');
           this.id = "";
         }
       );
@@ -104,7 +108,7 @@ export class OurServicesComponent implements OnInit {
     /** Se escucha los cambios en la lista.
      * obtiene la data del cambio
      */
- 
+
     this.ourServices.getServicesList().snapshotChanges()
       .pipe(
         map(changes =>
@@ -124,10 +128,10 @@ export class OurServicesComponent implements OnInit {
   delete(key: string) {
     this.ourServices.deleteService(key).subscribe(
       data => {
-        this.toastr.success('Exito!','El servicio ha sido eliminado con exito ');
+        this.toastr.success('Exito!', 'The service has been successfully removed. ');
       },
       err => {
-        this.toastr.error('Oops','You have an error');
+        this.toastr.error('Oops', 'You have an error');
       }
     );
   }
