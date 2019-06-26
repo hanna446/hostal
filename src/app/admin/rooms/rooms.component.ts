@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-
 import { AuthService } from "../../services/auth.service";
 import { RoomsService } from "../../services/rooms.service";
 import { RoomsModel } from "../../models/rooms.models";
 import { NgForm } from "@angular/forms";
-import swal from "sweetalert2";
 import { CategoriesService } from "../../services/categories.service";
 import { CategoryModels } from "../../models/category.models";
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
@@ -44,7 +42,7 @@ export class RoomsComponent implements OnInit {
     private authService: AuthService,
     private categoriesService: CategoriesService,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getRooms();
@@ -60,29 +58,44 @@ export class RoomsComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     if (!f.valid) {
+      // validated
+      this.toastr.info('Warning!', 'please fill in the missing fields');
       return;
     }
 
     if (!this.id) {
       // guarda
-      this.roomsService.createRoom(this.rom).subscribe(
-        data => {
-         this.toastr.success('Exito!','La habitación ha sido creada con exito');
-        },
-        err => {
-          this.toastr.error('Oops!','You have an error');
-        }
+      const fileName = `imgs/${new Date().valueOf().toString()}`;
+      const ref = this.storage.ref(fileName);
+      this.task = this.storage.upload(fileName, this.files[0]);
+
+
+      this.task.snapshotChanges().subscribe(
+        // The file's download URL
+        (async () => {
+          this.rom.img = await ref.getDownloadURL().toPromise();
+          this.roomsService.createRoom(this.rom).subscribe(
+            data => {
+              f.onReset();
+              this.toastr.success('Success!', 'The room has been successfully created.');
+            },
+            err => {
+              this.toastr.error('Oops!', 'You have an error');
+            }
+          );
+        }),
       );
 
     } else {
       // actualiza
       this.roomsService.updateRoom(this.rom, this.id).subscribe(
         data => {
-          this.toastr.success('Exito!','La habitación ha sido actualizada con exito');
+          this.toastr.success('Success!', 'The room has been successfully updated');
           this.id = "";
+          f.onReset();
         },
         err => {
-          this.toastr.error('Oops!','You have an error');
+          this.toastr.error('Oops!', 'You have an error');
           this.id = "";
         }
       );
@@ -120,10 +133,10 @@ export class RoomsComponent implements OnInit {
   deleteRoom(key: string) {
     this.roomsService.deleteRoom(key).subscribe(
       data => {
-        this.toastr.success('Exito!','La habitación ha sido eliminada con exito');
+        this.toastr.success('Sucess!', 'The room has been successfully removed');
       },
       err => {
-        this.toastr.error('Oops!','You have an error');
+        this.toastr.error('Oops!', 'You have an error');
       }
     );
   }
