@@ -3,6 +3,8 @@ import { OurServicesService } from "../../services/our-services.service";
 import { ServicesModel } from "../../models/our-services.models";
 import { NgForm } from "@angular/forms";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { RestaurantModel } from 'src/app/models/restaurant.models';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 declare var $: any;
 
 @Component({
@@ -11,17 +13,23 @@ declare var $: any;
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  restaurantArray: RestaurantModel[] = [];
   servicesArray: ServicesModel[] = [];
+  images: any [] = [];
 
   public formQuote = {
     dateIn: "",
     dateOut: "",
     room: ""
   };
-  constructor(private ourServices: OurServicesService) {}
+  constructor(
+    private ourServices: OurServicesService,
+    private restaurant: RestaurantService
+    ) {}
 
   ngOnInit() {
     this.getServices();
+    this.getRestaurant();
   }
 
   ngAfterViewInit() {
@@ -47,7 +55,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getServices() {
     this.ourServices
       .getServices()
-      .subscribe((data: any) => (this.servicesArray = data));                  
+      .subscribe((data: any) => {
+        this.servicesArray = data;
+       
+      });
+  }
+  getRestaurant() {
+    this.restaurant
+      .getRestaurant()
+      .subscribe((data: any) => {
+        this.restaurantArray = data;
+       
+      });
   }
 
   stellar() {

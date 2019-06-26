@@ -17,6 +17,7 @@ import { OurServicesComponent } from "./admin/our-services/our-services.componen
 import { RoomsComponent } from "./admin/rooms/rooms.component";
 import { UsersComponent } from './admin/users/users.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
+import { RestaurantComponent } from './admin/restaurant/restaurant.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: "admin/users", component: UsersComponent },
   { path: "admin/categories", component: CategoriesComponent, canActivate: [AuthGuard] },
   { path: "admin/our-services", component: OurServicesComponent, canActivate: [AuthGuard] },
+  { path: "admin/restaurant", component: RestaurantComponent, canActivate: [AuthGuard] },
   { path: "admin/rooms", component: RoomsComponent, canActivate: [AuthGuard] },
   { path: "**", pathMatch: "full", redirectTo: "home" }
 ];

@@ -13,6 +13,7 @@ import { ToastrModule } from "ngx-toastr";
 import { ModalsComponent } from '../components/modals/modals.component';
 import { UsersComponent } from './users/users.component';
 import { DropzoneDirective } from '../dropzone.directive';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 
 
@@ -23,7 +24,8 @@ import { DropzoneDirective } from '../dropzone.directive';
     RoomsComponent,
     ModalsComponent,
     UsersComponent,
-    DropzoneDirective
+    DropzoneDirective,
+    RestaurantComponent
   ],
   exports: [],
   imports: [
