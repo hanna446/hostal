@@ -21,6 +21,10 @@ export class NavPagesComponent implements OnInit {
     this.isAuthStatus();
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
   isAuthStatus() {
 
     this.userService.getUsersList().snapshotChanges()

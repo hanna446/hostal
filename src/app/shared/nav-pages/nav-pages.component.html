@@ -27,7 +27,10 @@
           <li class="nav-item">
             <a  routerLink="/home"class="nav-link"><span>Contact</span></a>
           </li>
-          <li class="nav-item dropdown" *ngIf="isUser">
+          <li class="nav-item">
+            <a  (click)="logout()" *ngIf="isUser" class="nav-link"><span>Exit</span></a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="isUser && status">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
             <div class="dropdown-menu">
               <a *ngIf="status" class="dropdown-item" routerLink="/admin/users">Users</a>

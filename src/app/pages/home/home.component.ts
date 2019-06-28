@@ -6,6 +6,7 @@ import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { RestaurantModel } from 'src/app/models/restaurant.models';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import Swal from "sweetalert2";
+
 declare var $: any;
 
 @Component({
