@@ -5,6 +5,7 @@ import { NgForm } from "@angular/forms";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { RestaurantModel } from 'src/app/models/restaurant.models';
 import { RestaurantService } from 'src/app/services/restaurant.service';
+import Swal from "sweetalert2";
 declare var $: any;
 
 @Component({
@@ -36,6 +37,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.onCarousel();
     this.ViewPopup();
     this.stellar();
+  }
+
+  quote(){
+    Swal.fire("Price:","280,35");
   }
 
   onsubmit(f: NgForm) {

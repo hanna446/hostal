@@ -15,7 +15,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: "./rooms.component.html",
   styleUrls: ["./rooms.component.css"]
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit {  
+  control = false;
   id: string;
   url;
   imgSrc: any;
@@ -76,11 +77,13 @@ export class RoomsComponent implements OnInit {
           this.rom.img = await ref.getDownloadURL().toPromise();
           this.roomsService.createRoom(this.rom).subscribe(
             data => {
+              this.id = "";
               f.onReset();
               this.toastr.success('Success!', 'The room has been successfully created.');
             },
             err => {
               this.toastr.error('Oops!', 'You have an error');
+              this.id = "";
             }
           );
         }),

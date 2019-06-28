@@ -93,46 +93,7 @@
       <div class="col-md-12">
         <div class="search-wrap-1 p-4">
           <div>
-            <!-- <form (ngSubmit)="onsubmit(f)" #f="ngForm" class="search-property-1">
-              <div class="row">
-                <div class=" form-control col-lg align-items-end">
-                  <input name="dateIn" (dateChange)="addEvent('changeIn', $event)" [(ngModel)]="formQuote.dateIn"
-                    type="text" matInput [matDatepicker]="picker" placeholder="Choose a date" disabled>
-                  <mat-datepicker-toggle matSuffix [for]="picker">
-                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                  </mat-datepicker-toggle>
-                  <mat-datepicker #picker disabled="false"></mat-datepicker>
-                </div>
-
-                <div class=" form-control col-lg align-items-end">
-                  <input name="dateOut" (dateChange)="addEvent('changeOut', $event)" [(ngModel)]="formQuote.dateOut"
-                    type="text" matInput [matDatepicker]="picker2"
-                    placeholder="Choose a date" disabled>
-                  <mat-datepicker-toggle matSuffix [for]="picker2">
-                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                  </mat-datepicker-toggle>
-                  <mat-datepicker #picker2 disabled="false"></mat-datepicker>
-                </div>
-
-                <div class=" form-control col-lg align-items-end">
-                  <div class="form-group">
-                    <div class="form-field">
-                      <input name="room" [(ngModel)]="formQuote.room" type="text" 
-                        placeholder="Choose a room">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg align-self-end">
-                <div class="form-group">
-                  <div class="form-field">
-                    <input type="submit" value="Search" class="form-control btn btn-primary">
-                  </div>
-                  </div>
-                  </div>
-              </div>
-            </form> -->
-            <!-- form -->
+<!-- form -->
             <form (ngSubmit)="onsubmit(f)" #f="ngForm" class="search-property-1">
             <div class="row">
               <div class="col-lg align-items-end">
@@ -167,16 +128,21 @@
                 <div class="form-group">
                   <label for="#">Choose a room</label>
                   <div class="form-field">
-                    <div class="icon"><span class="ion-ios-calendar"></span></div>
-                    <input name="room" [(ngModel)]="formQuote.room" type="text" class="form-control checkout_date"
-                      placeholder="Choose a room">
+                      <select [(ngModel)]="formQuote.room" name="formQuote" type="text" class="form-control checkout_date" placeholder="Choose a room">
+                          <option value="">Select a Room</option>
+                          <option >Single</option>
+                          <option >Double</option>
+                          <option >Junior Suites</option>
+                          <option >Suites</option>
+                          <option >Suite nupcial</option>
+                        </select>                
                   </div>
                 </div>
               </div>
               <div class="col-lg align-self-end">
                 <div class="form-group">
                   <div class="form-field">
-                    <input type="submit" value="Search" class="form-control btn btn-primary">
+                    <input (click)="quote()" type="submit" value="Search" class="form-control btn btn-primary">
                   </div>
                 </div>
               </div>

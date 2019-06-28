@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ["./our-services.component.css"]
 })
 export class OurServicesComponent implements OnInit {
+  control = false;
   id: string;
   imgFile: any;
   url;

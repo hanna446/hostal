@@ -14,6 +14,7 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
+  control = false;
   id: string;
   imgFile: any;
   url;

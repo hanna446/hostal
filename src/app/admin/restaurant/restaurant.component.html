@@ -142,9 +142,6 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save</button>
-                  <button class=" btn btn-primary " href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="fa fa-chevron-left"></span>
-                  </button>
                 </div>
               </div>
               
@@ -152,7 +149,10 @@
           </form>
           <!-- </form> -->
           <!-- Controls -->
-          <button class=" positionR btn btn-primary" href="#carousel-example-generic" role="button" data-slide="next">Next
+                      <button  *ngIf="control" (click)="control = false" class=" btn btn-primary " href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="fa fa-chevron-left"></span>
+                      </button>
+          <button  (click)="control = true" *ngIf="!control" class=" position btn btn-primary" href="#carousel-example-generic" role="button" data-slide="next">Next
             <span class="fa fa-chevron-right"></span></button>
         </div>
       </div>
